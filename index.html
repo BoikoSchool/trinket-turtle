@@ -1,2267 +1,1580 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Урок 1 · Розетка з квадратів · 8 клас</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Vollkorn:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
-    />
-    <style>
-      :root {
-        --paper: #f4ecda;
-        --paper-darker: #eae0cb;
-        --ink: #1b1a2a;
-        --ink-soft: #4a4660;
-        --coral: #d85c3a;
-        --coral-soft: #f2bfad;
-        --sage: #4f7a52;
-        --sage-soft: #c5d8c2;
-        --indigo: #2f4a7c;
-        --gold: #c99b45;
-        --border: #d2c8ae;
-        --code-bg: #1f1e2d;
-        --code-paper: #f8f2e4;
-        --shadow: rgba(31, 30, 45, 0.12);
-        --shadow-strong: rgba(31, 30, 45, 0.22);
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 1 · Розетка з квадратів · 8 клас</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Vollkorn:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+  :root {
+    --paper: #F4ECDA;
+    --paper-darker: #EAE0CB;
+    --ink: #1B1A2A;
+    --ink-soft: #4A4660;
+    --coral: #D85C3A;
+    --coral-soft: #F2BFAD;
+    --sage: #4F7A52;
+    --sage-soft: #C5D8C2;
+    --indigo: #2F4A7C;
+    --gold: #C99B45;
+    --border: #D2C8AE;
+    --code-bg: #1F1E2D;
+    --code-paper: #F8F2E4;
+    --shadow: rgba(31, 30, 45, 0.12);
+    --shadow-strong: rgba(31, 30, 45, 0.22);
+  }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      html,
-      body {
-        background: var(--paper);
-        color: var(--ink);
-        font-family: "Vollkorn", Georgia, serif;
-        font-size: 17px;
-        line-height: 1.55;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Vollkorn', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-      body {
-        background-image:
-          radial-gradient(
-            at 20% 10%,
-            rgba(216, 92, 58, 0.06) 0%,
-            transparent 40%
-          ),
-          radial-gradient(
-            at 80% 90%,
-            rgba(47, 74, 124, 0.05) 0%,
-            transparent 45%
-          );
-        background-attachment: fixed;
-      }
+  body {
+    background-image:
+      radial-gradient(at 20% 10%, rgba(216, 92, 58, 0.06) 0%, transparent 40%),
+      radial-gradient(at 80% 90%, rgba(47, 74, 124, 0.05) 0%, transparent 45%);
+    background-attachment: fixed;
+  }
 
-      /* Subtle paper grain */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: 0.4;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.15 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        z-index: 1;
-      }
+  /* Subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.15 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1;
+  }
 
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: var(--paper);
-        border-bottom: 1px solid var(--border);
-        padding: 14px 32px;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        font-family: "Fraunces", serif;
-      }
-      .topbar .logo {
-        font-weight: 800;
-        font-size: 15px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--ink);
-      }
-      .topbar .logo span {
-        color: var(--coral);
-      }
-      .topbar .meta {
-        font-size: 13px;
-        color: var(--ink-soft);
-        font-style: italic;
-      }
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Fraunces', serif;
+  }
+  .topbar .logo {
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .topbar .logo span { color: var(--coral); }
+  .topbar .meta {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
 
-      .stage {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 32px 24px 140px;
-        position: relative;
-        z-index: 2;
-      }
+  .stage {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 32px 24px 140px;
+    position: relative;
+    z-index: 2;
+  }
 
-      .slide {
-        display: none;
-        animation: fadeIn 0.35s ease-out;
-      }
-      .slide.active {
-        display: block;
-      }
+  .slide {
+    display: none;
+    animation: fadeIn 0.35s ease-out;
+  }
+  .slide.active { display: block; }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-      .step-tag {
-        display: inline-block;
-        padding: 5px 14px;
-        background: var(--ink);
-        color: var(--paper);
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        border-radius: 2px;
-        margin-bottom: 18px;
-      }
-      .step-tag.coral {
-        background: var(--coral);
-      }
-      .step-tag.sage {
-        background: var(--sage);
-      }
-      .step-tag.indigo {
-        background: var(--indigo);
-      }
+  .step-tag {
+    display: inline-block;
+    padding: 5px 14px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    margin-bottom: 18px;
+  }
+  .step-tag.coral { background: var(--coral); }
+  .step-tag.sage { background: var(--sage); }
+  .step-tag.indigo { background: var(--indigo); }
 
-      h1.slide-title {
-        font-family: "Fraunces", serif;
-        font-weight: 800;
-        font-size: clamp(28px, 4.5vw, 48px);
-        line-height: 1.05;
-        margin-bottom: 16px;
-        letter-spacing: -0.015em;
-      }
-      h1.slide-title em {
-        font-style: italic;
-        color: var(--coral);
-        font-weight: 500;
-      }
+  h1.slide-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4.5vw, 48px);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -0.015em;
+  }
+  h1.slide-title em {
+    font-style: italic;
+    color: var(--coral);
+    font-weight: 500;
+  }
 
-      h2.slide-title {
-        font-family: "Fraunces", serif;
-        font-weight: 700;
-        font-size: clamp(24px, 3.5vw, 36px);
-        line-height: 1.1;
-        margin-bottom: 14px;
-        letter-spacing: -0.01em;
-      }
+  h2.slide-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(24px, 3.5vw, 36px);
+    line-height: 1.1;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
 
-      p.lead {
-        font-size: 19px;
-        color: var(--ink-soft);
-        margin-bottom: 24px;
-        max-width: 65ch;
-      }
+  p.lead {
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 65ch;
+  }
 
-      p {
-        margin-bottom: 14px;
-        max-width: 70ch;
-      }
+  p { margin-bottom: 14px; max-width: 70ch; }
 
-      /* COVER SLIDE */
-      .cover {
-        text-align: left;
-        padding-top: 40px;
-      }
-      .cover .deck-num {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 13px;
-        color: var(--coral);
-        letter-spacing: 0.2em;
-        margin-bottom: 24px;
-      }
-      .cover h1 {
-        font-family: "Fraunces", serif;
-        font-size: clamp(40px, 7vw, 84px);
-        font-weight: 800;
-        line-height: 0.98;
-        letter-spacing: -0.02em;
-        margin-bottom: 18px;
-      }
-      .cover h1 .italic-accent {
-        font-style: italic;
-        font-weight: 500;
-        color: var(--coral);
-      }
-      .cover .subtitle {
-        font-family: "Fraunces", serif;
-        font-style: italic;
-        font-size: 22px;
-        color: var(--ink-soft);
-        max-width: 50ch;
-        margin-bottom: 32px;
-      }
-      .cover-rosette {
-        position: absolute;
-        right: -40px;
-        top: 80px;
-        width: 320px;
-        height: 320px;
-        opacity: 0.85;
-      }
-      @media (max-width: 800px) {
-        .cover-rosette {
-          display: none;
-        }
-      }
-      .cover-facts {
-        display: flex;
-        gap: 32px;
-        flex-wrap: wrap;
-        border-top: 2px solid var(--ink);
-        padding-top: 20px;
-        margin-top: 40px;
-        max-width: 600px;
-      }
-      .cover-facts > div {
-        flex: 1 1 140px;
-      }
-      .cover-facts .label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--ink-soft);
-        margin-bottom: 4px;
-      }
-      .cover-facts .value {
-        font-family: "Fraunces", serif;
-        font-weight: 700;
-        font-size: 18px;
-      }
+  /* COVER SLIDE */
+  .cover {
+    text-align: left;
+    padding-top: 40px;
+  }
+  .cover .deck-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--coral);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 7vw, 84px);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .cover h1 .italic-accent {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--coral);
+  }
+  .cover .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    margin-bottom: 32px;
+  }
+  .cover-rosette {
+    position: absolute;
+    right: -40px;
+    top: 80px;
+    width: 320px;
+    height: 320px;
+    opacity: 0.85;
+  }
+  @media (max-width: 800px) {
+    .cover-rosette { display: none; }
+  }
+  .cover-facts {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+    margin-top: 40px;
+    max-width: 600px;
+  }
+  .cover-facts > div {
+    flex: 1 1 140px;
+  }
+  .cover-facts .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .cover-facts .value {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+  }
 
-      /* PLAN */
-      .plan-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 14px;
-        margin-top: 24px;
-      }
-      .plan-item {
-        display: grid;
-        grid-template-columns: 80px 1fr auto;
-        gap: 20px;
-        align-items: center;
-        padding: 16px 20px;
-        background: var(--paper-darker);
-        border-left: 4px solid var(--coral);
-        border-radius: 2px;
-      }
-      .plan-item .num {
-        font-family: "Fraunces", serif;
-        font-weight: 800;
-        font-size: 36px;
-        color: var(--coral);
-        line-height: 1;
-      }
-      .plan-item .what {
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        font-size: 19px;
-      }
-      .plan-item .what small {
-        display: block;
-        font-family: "Vollkorn", serif;
-        font-weight: 400;
-        font-size: 14px;
-        color: var(--ink-soft);
-        margin-top: 3px;
-      }
-      .plan-item .time {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 13px;
-        color: var(--ink-soft);
-        background: var(--paper);
-        padding: 4px 10px;
-        border-radius: 2px;
-        border: 1px solid var(--border);
-      }
+  /* PLAN */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .plan-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--paper-darker);
+    border-left: 4px solid var(--coral);
+    border-radius: 2px;
+  }
+  .plan-item .num {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--coral);
+    line-height: 1;
+  }
+  .plan-item .what {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+  }
+  .plan-item .what small {
+    display: block;
+    font-family: 'Vollkorn', serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+  .plan-item .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--paper);
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+  }
 
-      /* TWO-COLUMN LAYOUT */
-      .two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 28px;
-        align-items: start;
-        margin-top: 20px;
-      }
-      @media (max-width: 720px) {
-        .two-col {
-          grid-template-columns: 1fr;
-        }
-      }
+  /* TWO-COLUMN LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 20px;
+  }
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
 
-      .col-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--ink-soft);
-        margin-bottom: 8px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid var(--border);
-      }
-      .col-label.coral {
-        color: var(--coral);
-        border-color: var(--coral-soft);
-      }
-      .col-label.sage {
-        color: var(--sage);
-        border-color: var(--sage-soft);
-      }
+  .col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .col-label.coral { color: var(--coral); border-color: var(--coral-soft); }
+  .col-label.sage { color: var(--sage); border-color: var(--sage-soft); }
 
-      /* BROWSER MOCKUP */
-      .browser {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px var(--shadow);
-        overflow: hidden;
-        border: 1px solid var(--border);
-      }
-      .browser-bar {
-        background: #e8e5dc;
-        padding: 10px 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #d4cfbf;
-      }
-      .browser-dots {
-        display: flex;
-        gap: 6px;
-      }
-      .browser-dots span {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-      }
-      .browser-dots span:nth-child(1) {
-        background: #ff5f57;
-      }
-      .browser-dots span:nth-child(2) {
-        background: #ffbd2e;
-      }
-      .browser-dots span:nth-child(3) {
-        background: #28c840;
-      }
-      .url-bar {
-        flex: 1;
-        background: white;
-        border: 1px solid #c9c2b0;
-        border-radius: 14px;
-        padding: 6px 14px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 13px;
-        color: var(--ink);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .url-bar .lock {
-        color: var(--sage);
-        font-size: 11px;
-      }
-      .url-bar .blink {
-        width: 1px;
-        height: 14px;
-        background: var(--ink);
-        margin-left: 2px;
-        animation: blink 1s steps(2, end) infinite;
-      }
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-      .browser-body {
-        background: white;
-        min-height: 220px;
-        padding: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-      .browser-body.empty {
-        background: linear-gradient(180deg, #f8f6f0 0%, #ffffff 100%);
-        color: #b8b2a0;
-        font-size: 14px;
-      }
+  /* BROWSER MOCKUP */
+  .browser {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .browser-bar {
+    background: #E8E5DC;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D4CFBF;
+  }
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .browser-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .browser-dots span:nth-child(1) { background: #FF5F57; }
+  .browser-dots span:nth-child(2) { background: #FFBD2E; }
+  .browser-dots span:nth-child(3) { background: #28C840; }
+  .url-bar {
+    flex: 1;
+    background: white;
+    border: 1px solid #C9C2B0;
+    border-radius: 14px;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .url-bar .lock {
+    color: var(--sage);
+    font-size: 11px;
+  }
+  .url-bar .blink {
+    width: 1px;
+    height: 14px;
+    background: var(--ink);
+    margin-left: 2px;
+    animation: blink 1s steps(2, end) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .browser-body {
+    background: white;
+    min-height: 220px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .browser-body.empty {
+    background: linear-gradient(180deg, #F8F6F0 0%, #FFFFFF 100%);
+    color: #B8B2A0;
+    font-size: 14px;
+  }
 
-      /* TRINKET HOMEPAGE MOCKUP */
-      .trinket-home {
-        background: white;
-        text-align: center;
-        padding: 40px 20px;
-      }
-      .trinket-home .brand {
-        font-family: "Fraunces", serif;
-        font-weight: 800;
-        font-size: 36px;
-        color: #00a0b0;
-        margin-bottom: 12px;
-      }
-      .trinket-home .tagline {
-        color: #666;
-        margin-bottom: 28px;
-        font-size: 14px;
-      }
-      .trinket-buttons {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .trinket-buttons button {
-        background: #e8e8e8;
-        border: 1px solid #ccc;
-        padding: 14px 22px;
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        font-size: 16px;
-        color: #555;
-        border-radius: 4px;
-        cursor: default;
-        position: relative;
-      }
-      .trinket-buttons button.python3 {
-        background: linear-gradient(180deg, #ffd43b 0%, #f6b91c 100%);
-        color: #2f4858;
-        border-color: #d9a516;
-        box-shadow:
-          0 0 0 4px rgba(216, 92, 58, 0.25),
-          0 0 0 8px rgba(216, 92, 58, 0.1);
-        animation: pulse 1.4s ease-in-out infinite;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.04);
-        }
-      }
-      .trinket-buttons button.python3::after {
-        content: "👆 сюди";
-        position: absolute;
-        top: 100%;
-        margin-top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: "Fraunces", serif;
-        font-style: italic;
-        font-size: 14px;
-        color: var(--coral);
-        white-space: nowrap;
-        animation: none;
-      }
+  /* TRINKET HOMEPAGE MOCKUP */
+  .trinket-home {
+    background: white;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .trinket-home .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #00A0B0;
+    margin-bottom: 12px;
+  }
+  .trinket-home .tagline {
+    color: #666;
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+  .trinket-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .trinket-buttons button {
+    background: #E8E8E8;
+    border: 1px solid #CCC;
+    padding: 14px 22px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #555;
+    border-radius: 4px;
+    cursor: default;
+    position: relative;
+  }
+  .trinket-buttons button.python3 {
+    background: linear-gradient(180deg, #FFD43B 0%, #F6B91C 100%);
+    color: #2F4858;
+    border-color: #D9A516;
+    box-shadow: 0 0 0 4px rgba(216, 92, 58, 0.25), 0 0 0 8px rgba(216, 92, 58, 0.1);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+  .trinket-buttons button.python3::after {
+    content: '👆 сюди';
+    position: absolute;
+    top: 100%;
+    margin-top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--coral);
+    white-space: nowrap;
+    animation: none;
+  }
 
-      /* TRINKET EDITOR MOCKUP */
-      .editor {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 6px 18px var(--shadow);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        font-family: "JetBrains Mono", monospace;
-      }
-      .editor-bar {
-        background: #2d2d2d;
-        color: #ddd;
-        padding: 8px 14px;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .editor-bar .run-btn {
-        background: #4fc08d;
-        color: white;
-        border: none;
-        padding: 4px 14px;
-        font-family: "JetBrains Mono", monospace;
-        font-weight: 700;
-        font-size: 12px;
-        border-radius: 3px;
-        cursor: default;
-      }
-      .editor-bar .run-btn.glow {
-        box-shadow:
-          0 0 0 3px rgba(79, 192, 141, 0.4),
-          0 0 0 6px rgba(79, 192, 141, 0.15);
-        animation: pulse 1.4s ease-in-out infinite;
-      }
-      .editor-split {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        min-height: 280px;
-      }
-      .editor-code {
-        background: var(--code-paper);
-        padding: 14px 16px;
-        font-size: 13px;
-        line-height: 1.6;
-        color: var(--ink);
-        overflow: auto;
-        border-right: 1px solid var(--border);
-        counter-reset: line;
-      }
-      .editor-code .line {
-        display: block;
-        white-space: pre;
-      }
-      .editor-code .line::before {
-        counter-increment: line;
-        content: counter(line);
-        display: inline-block;
-        width: 22px;
-        margin-right: 10px;
-        color: #b8ae92;
-        text-align: right;
-        font-size: 11px;
-      }
-      .editor-code .line.new {
-        background: rgba(216, 92, 58, 0.14);
-        margin: 0 -16px;
-        padding: 0 16px;
-        position: relative;
-      }
-      .editor-code .line.new::after {
-        content: "← новий";
-        position: absolute;
-        right: 12px;
-        color: var(--coral);
-        font-size: 10px;
-        font-style: italic;
-        font-family: "Fraunces", serif;
-      }
-      .editor-code .line.empty {
-        color: #c9c1ae;
-        font-style: italic;
-      }
-      .editor-code .kw {
-        color: #c92e58;
-        font-weight: 700;
-      }
-      .editor-code .builtin {
-        color: #2f4a7c;
-      }
-      .editor-code .str {
-        color: #4f7a52;
-      }
-      .editor-code .num {
-        color: #c99b45;
-      }
-      .editor-code .comment {
-        color: #b8ae92;
-        font-style: italic;
-      }
-      .editor-code .fn {
-        color: #2f4a7c;
-      }
+  /* TRINKET EDITOR MOCKUP */
+  .editor {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .editor-bar {
+    background: #2D2D2D;
+    color: #DDD;
+    padding: 8px 14px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .editor-bar .run-btn {
+    background: #4FC08D;
+    color: white;
+    border: none;
+    padding: 4px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: default;
+  }
+  .editor-bar .run-btn.glow {
+    box-shadow: 0 0 0 3px rgba(79, 192, 141, 0.4), 0 0 0 6px rgba(79, 192, 141, 0.15);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  .editor-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 280px;
+  }
+  .editor-code, .editor-canvas {
+    min-width: 0;
+  }
+  @media (max-width: 800px) {
+    .editor-split { grid-template-columns: 1fr; }
+    .editor-code { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  .editor-code {
+    background: var(--code-paper);
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink);
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: 1px solid var(--border);
+    counter-reset: line;
+  }
+  .editor-code .line {
+    display: block;
+    white-space: pre;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .editor-code .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 22px;
+    margin-right: 10px;
+    color: #B8AE92;
+    text-align: right;
+    font-size: 11px;
+  }
+  .editor-code .line.new {
+    background: rgba(216, 92, 58, 0.14);
+    margin: 0 -16px;
+    padding: 0 16px;
+    position: relative;
+  }
+  .editor-code .line.new::after {
+    content: '← новий';
+    position: absolute;
+    right: 12px;
+    color: var(--coral);
+    font-size: 10px;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+  .editor-code .line.empty { color: #C9C1AE; font-style: italic; }
+  .editor-code .kw { color: #C92E58; font-weight: 700; }
+  .editor-code .builtin { color: #2F4A7C; }
+  .editor-code .str { color: #4F7A52; }
+  .editor-code .num { color: #C99B45; }
+  .editor-code .comment { color: #B8AE92; font-style: italic; }
+  .editor-code .fn { color: #2F4A7C; }
 
-      .editor-canvas {
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px;
-        min-height: 280px;
-        position: relative;
-      }
-      .editor-canvas .canvas-label {
-        position: absolute;
-        top: 8px;
-        left: 12px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 10px;
-        color: #b8ae92;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .editor-canvas svg {
-        max-width: 100%;
-        max-height: 100%;
-      }
-      .editor-canvas.empty-canvas {
-        background: repeating-linear-gradient(
-          45deg,
-          #fafafa 0px,
-          #fafafa 10px,
-          #f2f2f2 10px,
-          #f2f2f2 20px
-        );
-        color: #bfb7a1;
-        font-style: italic;
-        font-size: 13px;
-      }
+  .editor-canvas {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    min-height: 280px;
+    position: relative;
+  }
+  .editor-canvas .canvas-label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #B8AE92;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .editor-canvas svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .editor-canvas.empty-canvas {
+    background: repeating-linear-gradient(45deg, #FAFAFA 0px, #FAFAFA 10px, #F2F2F2 10px, #F2F2F2 20px);
+    color: #BFB7A1;
+    font-style: italic;
+    font-size: 13px;
+  }
 
-      /* CALLOUT BOXES */
-      .callout {
-        padding: 16px 20px;
-        border-radius: 4px;
-        margin: 16px 0;
-        font-size: 15px;
-        border-left: 4px solid var(--ink);
-        background: var(--paper-darker);
-      }
-      .callout .tag {
-        font-family: "Fraunces", serif;
-        font-weight: 700;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 6px;
-        display: block;
-      }
-      .callout.tip {
-        border-color: var(--sage);
-        background: var(--sage-soft);
-      }
-      .callout.tip .tag {
-        color: var(--sage);
-      }
-      .callout.warn {
-        border-color: var(--coral);
-        background: var(--coral-soft);
-      }
-      .callout.warn .tag {
-        color: var(--coral);
-      }
-      .callout.info {
-        border-color: var(--indigo);
-        background: rgba(47, 74, 124, 0.1);
-      }
-      .callout.info .tag {
-        color: var(--indigo);
-      }
+  /* CALLOUT BOXES */
+  .callout {
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 15px;
+    border-left: 4px solid var(--ink);
+    background: var(--paper-darker);
+  }
+  .callout .tag {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .callout.tip { border-color: var(--sage); background: var(--sage-soft); }
+  .callout.tip .tag { color: var(--sage); }
+  .callout.warn { border-color: var(--coral); background: var(--coral-soft); }
+  .callout.warn .tag { color: var(--coral); }
+  .callout.info { border-color: var(--indigo); background: rgba(47, 74, 124, 0.1); }
+  .callout.info .tag { color: var(--indigo); }
 
-      /* CHECK LIST */
-      .checklist {
-        list-style: none;
-        margin: 16px 0;
-      }
-      .checklist li {
-        padding: 8px 0 8px 36px;
-        position: relative;
-        font-size: 16px;
-      }
-      .checklist li::before {
-        content: "☐";
-        position: absolute;
-        left: 4px;
-        top: 6px;
-        font-size: 20px;
-        color: var(--coral);
-      }
-      .checklist li.done::before {
-        content: "☑";
-        color: var(--sage);
-      }
+  /* CHECK LIST */
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .checklist li {
+    padding: 8px 0 8px 36px;
+    position: relative;
+    font-size: 16px;
+  }
+  .checklist li::before {
+    content: '☐';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    font-size: 20px;
+    color: var(--coral);
+  }
+  .checklist li.done::before { content: '☑'; color: var(--sage); }
 
-      /* TASK CARDS */
-      .task-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 18px;
-        margin-top: 20px;
-      }
-      .task {
-        background: var(--paper-darker);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 18px;
-        position: relative;
-      }
-      .task .task-num {
-        position: absolute;
-        top: -14px;
-        left: 14px;
-        background: var(--ink);
-        color: var(--paper);
-        padding: 4px 12px;
-        font-family: "Fraunces", serif;
-        font-weight: 700;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        border-radius: 2px;
-      }
-      .task h3 {
-        font-family: "Fraunces", serif;
-        font-weight: 700;
-        font-size: 18px;
-        margin: 8px 0 8px;
-      }
-      .task p {
-        font-size: 14px;
-        color: var(--ink-soft);
-        margin-bottom: 12px;
-      }
-      .task .preview {
-        background: black;
-        border-radius: 3px;
-        width: 100%;
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-      .task .preview svg {
-        width: 100%;
-        height: 100%;
-      }
+  /* TASK CARDS */
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+  }
+  .task {
+    background: var(--paper-darker);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+    position: relative;
+  }
+  .task .task-num {
+    position: absolute;
+    top: -14px;
+    left: 14px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+  }
+  .task h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 8px 0 8px;
+  }
+  .task p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .task .preview {
+    background: black;
+    border-radius: 3px;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .task .preview svg { width: 100%; height: 100%; }
 
-      /* NAVIGATION */
-      .nav-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--paper);
-        border-top: 1px solid var(--border);
-        padding: 14px 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 24px;
-        z-index: 50;
-        box-shadow: 0 -4px 12px var(--shadow);
-      }
-      .nav-bar button {
-        background: var(--ink);
-        color: var(--paper);
-        border: none;
-        padding: 10px 22px;
-        font-family: "Fraunces", serif;
-        font-weight: 600;
-        font-size: 15px;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: all 0.15s ease;
-      }
-      .nav-bar button:hover {
-        background: var(--coral);
-        transform: translateY(-1px);
-      }
-      .nav-bar button:disabled {
-        background: var(--border);
-        color: var(--ink-soft);
-        cursor: not-allowed;
-        transform: none;
-      }
-      .nav-bar .indicator {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 14px;
-        color: var(--ink-soft);
-        min-width: 60px;
-        text-align: center;
-      }
-      .nav-bar .indicator strong {
-        color: var(--coral);
-        font-size: 16px;
-      }
+  /* NAVIGATION */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    z-index: 50;
+    box-shadow: 0 -4px 12px var(--shadow);
+  }
+  .nav-bar button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 10px 22px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .nav-bar button:hover {
+    background: var(--coral);
+    transform: translateY(-1px);
+  }
+  .nav-bar button:disabled {
+    background: var(--border);
+    color: var(--ink-soft);
+    cursor: not-allowed;
+    transform: none;
+  }
+  .nav-bar .indicator {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
+    min-width: 60px;
+    text-align: center;
+  }
+  .nav-bar .indicator strong {
+    color: var(--coral);
+    font-size: 16px;
+  }
 
-      /* PROGRESS DOTS (top) */
-      .progress {
-        display: flex;
-        gap: 4px;
-        padding: 10px 24px;
-        background: var(--paper);
-        border-bottom: 1px solid var(--border);
-        overflow-x: auto;
-      }
-      .progress .dot {
-        flex: 1;
-        height: 4px;
-        background: var(--border);
-        border-radius: 2px;
-        cursor: pointer;
-        min-width: 12px;
-        transition: background 0.2s;
-      }
-      .progress .dot.done {
-        background: var(--sage);
-      }
-      .progress .dot.current {
-        background: var(--coral);
-      }
-      .progress .dot:hover {
-        background: var(--ink);
-      }
+  /* PROGRESS DOTS (top) */
+  .progress {
+    display: flex;
+    gap: 4px;
+    padding: 10px 24px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .progress .dot {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    cursor: pointer;
+    min-width: 12px;
+    transition: background 0.2s;
+  }
+  .progress .dot.done { background: var(--sage); }
+  .progress .dot.current { background: var(--coral); }
+  .progress .dot:hover { background: var(--ink); }
 
-      /* SVG arrow turtle */
-      .turtle-arrow {
-        transform-origin: 50% 50%;
-      }
+  /* SVG arrow turtle */
+  .turtle-arrow {
+    transform-origin: 50% 50%;
+  }
 
-      /* FINAL CELEBRATION */
-      .celebrate {
-        text-align: center;
-        padding: 40px 0;
-      }
-      .celebrate .big-emoji {
-        font-size: 80px;
-        margin-bottom: 20px;
-        display: inline-block;
-        animation: wobble 2s ease-in-out infinite;
-      }
-      @keyframes wobble {
-        0%,
-        100% {
-          transform: rotate(-5deg);
-        }
-        50% {
-          transform: rotate(5deg);
-        }
-      }
+  /* FINAL CELEBRATION */
+  .celebrate {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .celebrate .big-emoji {
+    font-size: 80px;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: wobble 2s ease-in-out infinite;
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
 
-      /* code inline */
-      code.inline {
-        font-family: "JetBrains Mono", monospace;
-        background: var(--paper-darker);
-        padding: 1px 6px;
-        border-radius: 2px;
-        font-size: 0.92em;
-        color: var(--coral);
-        border: 1px solid var(--border);
-      }
+  /* code inline */
+  code.inline {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--paper-darker);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 0.92em;
+    color: var(--coral);
+    border: 1px solid var(--border);
+  }
 
-      /* mouse pointer indicator */
-      .pointer-here {
-        position: relative;
-        display: inline-block;
-      }
-      .pointer-here::after {
-        content: "👆";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 24px;
-        margin-top: 4px;
-        animation: bounce 1s ease-in-out infinite;
-      }
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateX(-50%) translateY(0);
-        }
-        50% {
-          transform: translateX(-50%) translateY(-4px);
-        }
-      }
+  /* mouse pointer indicator */
+  .pointer-here {
+    position: relative;
+    display: inline-block;
+  }
+  .pointer-here::after {
+    content: '👆';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    margin-top: 4px;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-4px); }
+  }
 
-      @media print {
-        .nav-bar,
-        .progress,
-        .topbar {
-          display: none;
-        }
-        .slide {
-          display: block !important;
-          page-break-after: always;
-        }
-        body::before {
-          display: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="logo">PYTHON<span>·</span>УРОК 1</div>
-      <div class="meta">Розетка з квадратів · 8 клас · 45 хвилин</div>
-    </header>
+  @media print {
+    .nav-bar, .progress, .topbar { display: none; }
+    .slide { display: block !important; page-break-after: always; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
 
-    <div class="progress" id="progress"></div>
+<header class="topbar">
+  <div class="logo">PYTHON<span>·</span>УРОК 1</div>
+  <div class="meta">Розетка з квадратів · 8 клас · 45 хвилин</div>
+</header>
 
-    <main class="stage" id="stage">
-      <!-- SLIDE 1: COVER -->
-      <section class="slide cover" data-slide="1">
-        <div class="deck-num">УРОК 01 / ЗНАЙОМСТВО З БІБЛІОТЕКАМИ</div>
-        <h1>Розетка <span class="italic-accent">з квадратів.</span></h1>
-        <p class="subtitle">
-          Сьогодні намалюємо геометричну квітку — лише 10 рядків коду, а на
-          екрані з'явиться диво.
-        </p>
-        <svg class="cover-rosette" viewBox="-200 -200 400 400">
-          <circle cx="0" cy="0" r="200" fill="#1B1A2A" />
-          <g id="cover-rosette-target"></g>
-        </svg>
-        <div class="cover-facts">
-          <div>
-            <div class="label">Платформа</div>
-            <div class="value">trinket.io/turtle</div>
+<div class="progress" id="progress"></div>
+
+<main class="stage" id="stage">
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide cover" data-slide="1">
+    <div class="deck-num">УРОК 01 / ЗНАЙОМСТВО З БІБЛІОТЕКАМИ</div>
+    <h1>Розетка <span class="italic-accent">з квадратів.</span></h1>
+    <p class="subtitle">Сьогодні намалюємо геометричну квітку — лише 10 рядків коду, а на екрані з'явиться диво.</p>
+    <svg class="cover-rosette" viewBox="-200 -200 400 400">
+      <circle cx="0" cy="0" r="200" fill="#1B1A2A"/>
+      <g id="cover-rosette-target"></g>
+    </svg>
+    <div class="cover-facts">
+      <div>
+        <div class="label">Платформа</div>
+        <div class="value">trinket.io/turtle</div>
+      </div>
+      <div>
+        <div class="label">Бібліотеки</div>
+        <div class="value">turtle, random</div>
+      </div>
+      <div>
+        <div class="label">Час</div>
+        <div class="value">45 хв</div>
+      </div>
+      <div>
+        <div class="label">Рівень</div>
+        <div class="value">базовий</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: PLAN -->
+  <section class="slide" data-slide="2">
+    <span class="step-tag">План уроку</span>
+    <h1 class="slide-title">Що ми зробимо за 45&nbsp;хвилин</h1>
+    <p class="lead">Кожен етап — невеликий і зрозумілий. Не поспішай, головне — дійти до кінця разом.</p>
+    <div class="plan-grid">
+      <div class="plan-item">
+        <div class="num">01</div>
+        <div class="what">Відкриваємо Trinket
+          <small>Браузер → trinket.io/turtle</small>
+        </div>
+        <div class="time">5 хв</div>
+      </div>
+      <div class="plan-item">
+        <div class="num">02</div>
+        <div class="what">Знайомимось з редактором
+          <small>Де писати код, де натискати Run, де з'являється результат</small>
+        </div>
+        <div class="time">5 хв</div>
+      </div>
+      <div class="plan-item">
+        <div class="num">03</div>
+        <div class="what">Малюємо перший квадрат
+          <small>Команди turtle: forward, right</small>
+        </div>
+        <div class="time">10 хв</div>
+      </div>
+      <div class="plan-item">
+        <div class="num">04</div>
+        <div class="what">Перетворюємо квадрат на розетку
+          <small>Цикл + список кольорів + random</small>
+        </div>
+        <div class="time">15 хв</div>
+      </div>
+      <div class="plan-item">
+        <div class="num">05</div>
+        <div class="what">Експерименти й виставка
+          <small>Кожен робить свою версію — і показуємо</small>
+        </div>
+        <div class="time">10 хв</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: STEP 1 - OPEN BROWSER -->
+  <section class="slide" data-slide="3">
+    <span class="step-tag coral">Крок 1</span>
+    <h1 class="slide-title">Відкриваємо браузер.</h1>
+    <p class="lead">Будь-який, який є на твоєму комп'ютері: Chrome, Edge, Firefox, Safari, Opera.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">Шукай таку іконку на робочому столі або панелі задач</div>
+        <div style="display: flex; gap: 18px; justify-content: center; padding: 30px 0; background: var(--paper-darker); border-radius: 6px;">
+          <div style="text-align: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(from 0deg, #EA4335, #FBBC05, #34A853, #4285F4, #EA4335); display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; box-shadow: 0 3px 8px var(--shadow);">
+              <div style="width: 24px; height: 24px; background: #4285F4; border-radius: 50%; border: 4px solid white;"></div>
+            </div>
+            <div style="font-size: 12px;">Chrome</div>
           </div>
-          <div>
-            <div class="label">Бібліотеки</div>
-            <div class="value">turtle, random</div>
+          <div style="text-align: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #FF6611 0%, #DD2200 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; box-shadow: 0 3px 8px var(--shadow); color: white; font-size: 30px;">🦊</div>
+            <div style="font-size: 12px;">Firefox</div>
           </div>
-          <div>
-            <div class="label">Час</div>
-            <div class="value">45 хв</div>
-          </div>
-          <div>
-            <div class="label">Рівень</div>
-            <div class="value">базовий</div>
+          <div style="text-align: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0078D7 0%, #00BCF2 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; box-shadow: 0 3px 8px var(--shadow); color: white; font-weight: 800; font-family: 'Fraunces', serif;">e</div>
+            <div style="font-size: 12px;">Edge</div>
           </div>
         </div>
-      </section>
-
-      <!-- SLIDE 2: PLAN -->
-      <section class="slide" data-slide="2">
-        <span class="step-tag">План уроку</span>
-        <h1 class="slide-title">Що ми зробимо за 45&nbsp;хвилин</h1>
-        <p class="lead">
-          Кожен етап — невеликий і зрозумілий. Не поспішай, головне — дійти до
-          кінця разом.
-        </p>
-        <div class="plan-grid">
-          <div class="plan-item">
-            <div class="num">01</div>
-            <div class="what">
-              Відкриваємо Trinket
-              <small>Браузер → trinket.io/turtle</small>
-            </div>
-            <div class="time">5 хв</div>
-          </div>
-          <div class="plan-item">
-            <div class="num">02</div>
-            <div class="what">
-              Знайомимось з редактором
-              <small
-                >Де писати код, де натискати Run, де з'являється
-                результат</small
-              >
-            </div>
-            <div class="time">5 хв</div>
-          </div>
-          <div class="plan-item">
-            <div class="num">03</div>
-            <div class="what">
-              Малюємо перший квадрат
-              <small>Команди turtle: forward, right</small>
-            </div>
-            <div class="time">10 хв</div>
-          </div>
-          <div class="plan-item">
-            <div class="num">04</div>
-            <div class="what">
-              Перетворюємо квадрат на розетку
-              <small>Цикл + список кольорів + random</small>
-            </div>
-            <div class="time">15 хв</div>
-          </div>
-          <div class="plan-item">
-            <div class="num">05</div>
-            <div class="what">
-              Експерименти й виставка
-              <small>Кожен робить свою версію — і показуємо</small>
-            </div>
-            <div class="time">10 хв</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 3: STEP 1 - OPEN BROWSER -->
-      <section class="slide" data-slide="3">
-        <span class="step-tag coral">Крок 1</span>
-        <h1 class="slide-title">Відкриваємо браузер.</h1>
-        <p class="lead">
-          Будь-який, який є на твоєму комп'ютері: Chrome, Edge, Firefox, Safari,
-          Opera.
-        </p>
-
-        <div class="two-col">
-          <div>
-            <div class="col-label">
-              Шукай таку іконку на робочому столі або панелі задач
-            </div>
-            <div
-              style="
-                display: flex;
-                gap: 18px;
-                justify-content: center;
-                padding: 30px 0;
-                background: var(--paper-darker);
-                border-radius: 6px;
-              "
-            >
-              <div style="text-align: center">
-                <div
-                  style="
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    background: conic-gradient(
-                      from 0deg,
-                      #ea4335,
-                      #fbbc05,
-                      #34a853,
-                      #4285f4,
-                      #ea4335
-                    );
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 0 auto 6px;
-                    box-shadow: 0 3px 8px var(--shadow);
-                  "
-                >
-                  <div
-                    style="
-                      width: 24px;
-                      height: 24px;
-                      background: #4285f4;
-                      border-radius: 50%;
-                      border: 4px solid white;
-                    "
-                  ></div>
-                </div>
-                <div style="font-size: 12px">Chrome</div>
-              </div>
-              <div style="text-align: center">
-                <div
-                  style="
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    background: linear-gradient(
-                      135deg,
-                      #ff6611 0%,
-                      #dd2200 100%
-                    );
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 0 auto 6px;
-                    box-shadow: 0 3px 8px var(--shadow);
-                    color: white;
-                    font-size: 30px;
-                  "
-                >
-                  🦊
-                </div>
-                <div style="font-size: 12px">Firefox</div>
-              </div>
-              <div style="text-align: center">
-                <div
-                  style="
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    background: linear-gradient(
-                      135deg,
-                      #0078d7 0%,
-                      #00bcf2 100%
-                    );
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 0 auto 6px;
-                    box-shadow: 0 3px 8px var(--shadow);
-                    color: white;
-                    font-weight: 800;
-                    font-family: &quot;Fraunces&quot;, serif;
-                  "
-                >
-                  e
-                </div>
-                <div style="font-size: 12px">Edge</div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="col-label coral">Що повинно з'явитися</div>
-            <div class="browser">
-              <div class="browser-bar">
-                <div class="browser-dots">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="url-bar">
-                  <span class="lock">🔒</span>
-                  <span style="color: #b8b2a0">введи адресу...</span>
-                  <span class="blink"></span>
-                </div>
-              </div>
-              <div class="browser-body empty">порожня вкладка</div>
-            </div>
-          </div>
-        </div>
-        <div class="callout tip">
-          <span class="tag">Підказка</span>
-          Якщо браузер уже відкритий — просто відкрий нову вкладку:
-          <code class="inline">Ctrl + T</code> (Windows) або
-          <code class="inline">⌘ + T</code> (Mac).
-        </div>
-      </section>
-
-      <!-- SLIDE 4: STEP 2 - GO TO TRINKET -->
-      <section class="slide" data-slide="4">
-        <span class="step-tag coral">Крок 2</span>
-        <h1 class="slide-title">Йдемо на <em>trinket.io/turtle</em></h1>
-        <p class="lead">
-          В адресному рядку (зверху) набери літерами латиниці:
-          <strong>trinket.io/turtle</strong> — і натисни Enter. Дуже важливо:
-          саме з <code class="inline">/turtle</code> в кінці.
-        </p>
-
-        <div class="col-label coral" style="margin-bottom: 8px">
-          Адресний рядок повинен виглядати так:
-        </div>
+      </div>
+      <div>
+        <div class="col-label coral">Що повинно з'явитися</div>
         <div class="browser">
           <div class="browser-bar">
-            <div class="browser-dots">
-              <span></span><span></span><span></span>
-            </div>
+            <div class="browser-dots"><span></span><span></span><span></span></div>
             <div class="url-bar">
               <span class="lock">🔒</span>
-              <span><strong>trinket.io/turtle</strong></span>
+              <span style="color: #B8B2A0;">введи адресу...</span>
               <span class="blink"></span>
             </div>
           </div>
-          <div class="browser-body empty">→ натисни Enter, щоб перейти</div>
+          <div class="browser-body empty">порожня вкладка</div>
         </div>
+      </div>
+    </div>
+    <div class="callout tip">
+      <span class="tag">Підказка</span>
+      Якщо браузер уже відкритий — просто відкрий нову вкладку: <code class="inline">Ctrl + T</code> (Windows) або <code class="inline">⌘ + T</code> (Mac).
+    </div>
+  </section>
 
-        <div class="callout warn">
-          <span class="tag">Уважно з адресою</span>
-          Якщо набрати просто <code class="inline">trinket.io</code> без
-          <code class="inline">/turtle</code> — потрапиш на головну, де є кнопка
-          &laquo;Python&raquo;. Вона веде в інший режим (Python 3), де
-          <strong>наш код працювати не буде</strong>. Тому одразу:
-          <strong>trinket.io/turtle</strong>.
+  <!-- SLIDE 4: STEP 2 - GO TO TRINKET -->
+  <section class="slide" data-slide="4">
+    <span class="step-tag coral">Крок 2</span>
+    <h1 class="slide-title">Йдемо на <em>trinket.io/turtle</em></h1>
+    <p class="lead">В адресному рядку (зверху) набери літерами латиниці: <strong>trinket.io/turtle</strong> — і натисни Enter. Дуже важливо: саме з <code class="inline">/turtle</code> в кінці.</p>
+
+    <div class="col-label coral" style="margin-bottom: 8px;">Адресний рядок повинен виглядати так:</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="url-bar">
+          <span class="lock">🔒</span>
+          <span><strong>trinket.io/turtle</strong></span>
+          <span class="blink"></span>
         </div>
-        <div class="callout info">
-          <span class="tag">Що тут робить літера &laquo;io&raquo;?</span>
-          Це домен, як <code class="inline">.ua</code> чи
-          <code class="inline">.com</code>. Багато технологічних сайтів обирають
-          його, бо звучить як &laquo;I/O&raquo; (input/output, ввід/вивід).
+      </div>
+      <div class="browser-body empty">→ натисни Enter, щоб перейти</div>
+    </div>
+
+    <div class="callout warn">
+      <span class="tag">Уважно з адресою</span>
+      Якщо набрати просто <code class="inline">trinket.io</code> без <code class="inline">/turtle</code> — потрапиш на головну, де є кнопка &laquo;Python&raquo;. Вона веде в інший режим (Python 3), де <strong>наш код працювати не буде</strong>. Тому одразу: <strong>trinket.io/turtle</strong>.
+    </div>
+    <div class="callout info">
+      <span class="tag">Що тут робить літера &laquo;io&raquo;?</span>
+      Це домен, як <code class="inline">.ua</code> чи <code class="inline">.com</code>. Багато технологічних сайтів обирають його, бо звучить як &laquo;I/O&raquo; (input/output, ввід/вивід).
+    </div>
+  </section>
+
+  <!-- SLIDE 5: STEP 3 - WHAT YOU SEE IMMEDIATELY -->
+  <section class="slide" data-slide="5">
+    <span class="step-tag coral">Крок 3</span>
+    <h1 class="slide-title">Сторінка одразу відкрила <em>редактор</em></h1>
+    <p class="lead">trinket.io/turtle не показує жодних меню — кидає одразу всередину. На екрані вже є приклад коду від Trinket: він малює червоно-жовту "зірку". <strong>Не лякайся незрозумілих рядків</strong> — за хвилину ми все це приберемо.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="comment"># Default starter code</span></span>
+          <span class="line"><span class="kw">from</span> turtle <span class="kw">import</span> *</span>
+          <span class="line"></span>
+          <span class="line"><span class="fn">color</span>(<span class="str">'red'</span>, <span class="str">'yellow'</span>)</span>
+          <span class="line"><span class="fn">begin_fill</span>()</span>
+          <span class="line"><span class="kw">while</span> <span class="builtin">True</span>:</span>
+          <span class="line">    <span class="fn">forward</span>(<span class="num">200</span>)</span>
+          <span class="line">    <span class="fn">left</span>(<span class="num">170</span>)</span>
+          <span class="line">    <span class="kw">if</span> <span class="builtin">abs</span>(<span class="fn">pos</span>()) &lt; <span class="num">1</span>:</span>
+          <span class="line">        <span class="kw">break</span></span>
+          <span class="line"><span class="fn">end_fill</span>()</span>
+          <span class="line"><span class="fn">done</span>()</span>
         </div>
-      </section>
+        <div class="editor-canvas empty-canvas">
+          <span class="canvas-label">область результату</span>
+          поки порожньо —<br>
+          ▶ Run ще не натискали
+        </div>
+      </div>
+    </div>
 
-      <!-- SLIDE 5: STEP 3 - WHAT YOU SEE IMMEDIATELY -->
-      <section class="slide" data-slide="5">
-        <span class="step-tag coral">Крок 3</span>
-        <h1 class="slide-title">Сторінка одразу відкрила <em>редактор</em></h1>
-        <p class="lead">
-          trinket.io/turtle не показує жодних меню — кидає одразу всередину. На
-          екрані вже є приклад коду від Trinket: він малює червоно-жовту
-          "зірку". <strong>Не лякайся незрозумілих рядків</strong> — за хвилину
-          ми все це приберемо.
-        </p>
+    <div class="callout warn">
+      <span class="tag">Не запускай цей приклад</span>
+      Він написаний для старішої версії turtle і на trinket.io/turtle малює <strong>не зірку, а тонесеньку чорну рисочку</strong>. Не лякайся — це не твоя помилка. Ми зараз все одно видалимо цей код.
+    </div>
+    <div class="callout info">
+      <span class="tag">Червоний ⚠️ біля &laquo;main.py&raquo; — нормально</span>
+      Цей значок означає просто &laquo;файл змінений&raquo;, а не помилку. З'являється і зникає сам по собі. Не звертай на нього уваги.
+    </div>
+  </section>
 
-        <div class="editor">
+  <!-- SLIDE 6: STEP 4 - EDITOR INTERFACE -->
+  <section class="slide" data-slide="6">
+    <span class="step-tag coral">Крок 4</span>
+    <h1 class="slide-title">Знайомимось з редактором</h1>
+    <p class="lead">Екран ділиться на дві частини. Зліва — куди ми пишемо код. Справа — де комп'ютер показує результат.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="comment"># Default starter code</span></span>
+          <span class="line"><span class="kw">from</span> turtle <span class="kw">import</span> *</span>
+          <span class="line"></span>
+          <span class="line">color(<span class="str">'red'</span>, <span class="str">'yellow'</span>)</span>
+          <span class="line">begin_fill()</span>
+          <span class="line"><span class="kw">while</span> <span class="builtin">True</span>:</span>
+          <span class="line">    forward(<span class="num">200</span>)</span>
+          <span class="line">    left(<span class="num">170</span>)</span>
+          <span class="line">    <span class="kw">if</span> abs(pos()) &lt; <span class="num">1</span>:</span>
+          <span class="line">        <span class="kw">break</span></span>
+          <span class="line">end_fill()</span>
+          <span class="line">done()</span>
+        </div>
+        <div class="editor-canvas empty-canvas">
+          <span class="canvas-label">область результату</span>
+          тут з'являться<br>
+          наші малюнки
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top: 28px;">
+      <div>
+        <div class="col-label">⬅️ Ліве вікно — РЕДАКТОР</div>
+        <p style="font-size: 15px;">Тут ми пишемо команди для комп'ютера. Кожен рядок — окрема команда.</p>
+      </div>
+      <div>
+        <div class="col-label coral">➡️ Праве вікно — ВИВІД</div>
+        <p style="font-size: 15px;">Тут з'являється результат: малюнок, текст або повідомлення про помилку. Спочатку воно порожнє.</p>
+      </div>
+    </div>
+    <div class="callout info">
+      <span class="tag">Зелена кнопка ▶ Run</span>
+      Натискаємо її щоразу, коли хочемо побачити, що робить наш код.
+    </div>
+  </section>
+
+  <!-- SLIDE 7: STEP 5 - CLEAR & IMPORT -->
+  <section class="slide" data-slide="7">
+    <span class="step-tag coral">Крок 5</span>
+    <h1 class="slide-title">Стираємо приклад, пишемо своє</h1>
+    <p class="lead">Виділи весь код у лівому вікні (<code class="inline">Ctrl + A</code>) та видали (<code class="inline">Delete</code>). Тепер пиши ось це:</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line new"><span class="kw">import</span> turtle</span>
+          <span class="line new"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line empty">(поки що все)</span>
+        </div>
+        <div class="editor-canvas empty-canvas">
+          поки що порожньо —<br>
+          натиснемо ▶ Run на наступному кроці
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <span class="tag">Що це за <code class="inline">import</code>?</span>
+      <p style="margin-bottom: 0;">Команда <code class="inline">import</code> підключає бібліотеку — готовий набір функцій, які хтось вже написав для нас. <code class="inline">turtle</code> вміє малювати. <code class="inline">random</code> вміє вибирати випадкові речі. Без них наша програма буде сама не своя.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: STEP 6 - CREATE TURTLE -->
+  <section class="slide" data-slide="8">
+    <span class="step-tag coral">Крок 6</span>
+    <h1 class="slide-title">Кличемо черепаху на сцену</h1>
+    <p class="lead">Додаємо ще 2 рядки. Перший створює черепаху-художницю на ім'я <code class="inline">t</code>. Другий — каже їй малювати максимально швидко.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn glow">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="kw">import</span> turtle</span>
+          <span class="line"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line new">t = turtle.<span class="fn">Turtle</span>()</span>
+          <span class="line new">t.<span class="fn">speed</span>(<span class="num">0</span>)</span>
+        </div>
+        <div class="editor-canvas">
+          <span class="canvas-label">Натисни ▶ Run</span>
+          <svg viewBox="-150 -150 300 300" width="200">
+            <rect x="-150" y="-150" width="300" height="300" fill="white"/>
+            <polygon class="turtle-arrow" points="-8,-6 8,0 -8,6" fill="#1B1A2A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="tag">Що повинно з'явитися</span>
+      Маленький чорний трикутничок (стрілочка) посередині правого вікна. Це і є наша черепаха. Поки вона дивиться вправо.
+    </div>
+    <div class="callout info">
+      <span class="tag">Чому <code class="inline">speed(0)</code>?</span>
+      Дивно, але у turtle <strong>0 — це максимальна швидкість</strong>, а не "стоп". 1 — найповільніша, 10 — швидка, 0 — миттєво. Логіка інопланетна, але звикнемо.
+    </div>
+  </section>
+
+  <!-- SLIDE 9: STEP 7 - FIRST SQUARE -->
+  <section class="slide" data-slide="9">
+    <span class="step-tag coral">Крок 7</span>
+    <h1 class="slide-title">Малюємо перший квадрат</h1>
+    <p class="lead">Додаємо цикл: 4 рази "пройти вперед на 100, повернути направо на 90°". Виходить квадрат.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn glow">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="kw">import</span> turtle</span>
+          <span class="line"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line">t = turtle.<span class="fn">Turtle</span>()</span>
+          <span class="line">t.<span class="fn">speed</span>(<span class="num">0</span>)</span>
+          <span class="line"></span>
+          <span class="line new"><span class="kw">for</span> _ <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">4</span>):</span>
+          <span class="line new">    t.<span class="fn">forward</span>(<span class="num">100</span>)</span>
+          <span class="line new">    t.<span class="fn">right</span>(<span class="num">90</span>)</span>
+        </div>
+        <div class="editor-canvas">
+          <span class="canvas-label">Після ▶ Run</span>
+          <svg viewBox="-150 -150 300 300" width="220">
+            <rect x="-150" y="-150" width="300" height="300" fill="white"/>
+            <polyline points="0,0 100,0 100,100 0,100 0,0" fill="none" stroke="#1B1A2A" stroke-width="2"/>
+            <polygon class="turtle-arrow" points="-6,-4 6,0 -6,4" fill="#1B1A2A" transform="translate(0,0)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <span class="tag">Розбираємо <code class="inline">for _ in range(4):</code></span>
+      <p style="margin-bottom: 0;">Це означає: "виконай те, що відступлено праворуч, рівно 4 рази". Підкреслення <code class="inline">_</code> — це змінна, яка нам не потрібна (просто лічильник). Двокрапка та відступ — обов'язкові!</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: STEP 8 - ADD COLOR -->
+  <section class="slide" data-slide="10">
+    <span class="step-tag coral">Крок 8</span>
+    <h1 class="slide-title">Розфарбовуємо</h1>
+    <p class="lead">Перед циклом скажемо черепасі, якого кольору лінія. А фон зробимо чорним — на ньому кольори будуть яскраві.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn glow">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="kw">import</span> turtle</span>
+          <span class="line"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line">t = turtle.<span class="fn">Turtle</span>()</span>
+          <span class="line">t.<span class="fn">speed</span>(<span class="num">0</span>)</span>
+          <span class="line new">screen = turtle.<span class="fn">Screen</span>()</span>
+          <span class="line new">screen.<span class="fn">bgcolor</span>(<span class="str">"black"</span>)</span>
+          <span class="line new">t.<span class="fn">color</span>(<span class="str">"red"</span>)</span>
+          <span class="line"></span>
+          <span class="line"><span class="kw">for</span> _ <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">4</span>):</span>
+          <span class="line">    t.<span class="fn">forward</span>(<span class="num">100</span>)</span>
+          <span class="line">    t.<span class="fn">right</span>(<span class="num">90</span>)</span>
+        </div>
+        <div class="editor-canvas">
+          <span class="canvas-label">Після ▶ Run</span>
+          <svg viewBox="-150 -150 300 300" width="220">
+            <rect x="-150" y="-150" width="300" height="300" fill="#1B1A2A"/>
+            <polyline points="0,0 100,0 100,100 0,100 0,0" fill="none" stroke="#D85C3A" stroke-width="2.5"/>
+            <polygon class="turtle-arrow" points="-6,-4 6,0 -6,4" fill="#D85C3A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="tag">Замість &laquo;red&raquo; спробуй</span>
+      <code class="inline">"yellow"</code>, <code class="inline">"cyan"</code>, <code class="inline">"magenta"</code>, <code class="inline">"lime"</code>, <code class="inline">"orange"</code>. Усі назви — англійською, у лапках. Лапки можна одинарні або подвійні — без різниці.
+    </div>
+  </section>
+
+  <!-- SLIDE 11: STEP 9 - PALETTE -->
+  <section class="slide" data-slide="11">
+    <span class="step-tag coral">Крок 9</span>
+    <h1 class="slide-title">Готуємо палітру</h1>
+    <p class="lead">Створимо <strong>список</strong> кольорів. Кожен квадрат буде вибирати з нього випадковий колір.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py</span>
+        <button class="run-btn glow">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code">
+          <span class="line"><span class="kw">import</span> turtle</span>
+          <span class="line"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line">t = turtle.<span class="fn">Turtle</span>()</span>
+          <span class="line">t.<span class="fn">speed</span>(<span class="num">0</span>)</span>
+          <span class="line">screen = turtle.<span class="fn">Screen</span>()</span>
+          <span class="line">screen.<span class="fn">bgcolor</span>(<span class="str">"black"</span>)</span>
+          <span class="line new">colors = [<span class="str">"red"</span>, <span class="str">"yellow"</span>, <span class="str">"blue"</span>,</span>
+          <span class="line new">          <span class="str">"green"</span>, <span class="str">"orange"</span>, <span class="str">"cyan"</span>]</span>
+          <span class="line new">t.<span class="fn">color</span>(random.<span class="fn">choice</span>(colors))</span>
+          <span class="line"></span>
+          <span class="line"><span class="kw">for</span> _ <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">4</span>):</span>
+          <span class="line">    t.<span class="fn">forward</span>(<span class="num">100</span>)</span>
+          <span class="line">    t.<span class="fn">right</span>(<span class="num">90</span>)</span>
+        </div>
+        <div class="editor-canvas">
+          <span class="canvas-label">Запусти кілька разів!</span>
+          <svg viewBox="-150 -150 300 300" width="220">
+            <rect x="-150" y="-150" width="300" height="300" fill="#1B1A2A"/>
+            <polyline points="0,0 100,0 100,100 0,100 0,0" fill="none" stroke="#5BC0EB" stroke-width="2.5"/>
+            <polygon class="turtle-arrow" points="-6,-4 6,0 -6,4" fill="#5BC0EB"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <span class="tag">Експеримент</span>
+      Натисни ▶ Run 3–4 рази підряд. Колір квадрата щоразу різний! Це робота <code class="inline">random.choice(colors)</code> — обирає випадковий елемент зі списку.
+    </div>
+  </section>
+
+  <!-- SLIDE 12: STEP 10 - ROSETTE -->
+  <section class="slide" data-slide="12">
+    <span class="step-tag coral">Крок 10</span>
+    <h1 class="slide-title">36 квадратів — і виходить <em>розетка</em></h1>
+    <p class="lead">Загортаємо весь блок (вибір кольору + малювання квадрата) у ще один цикл, на 36 повторень. Між квадратами повертаємо черепаху на 10° — так усі вони стануть під різним кутом і разом утворять зірку.</p>
+
+    <div class="editor">
+      <div class="editor-bar">
+        <span>main.py · фінальний код</span>
+        <button class="run-btn glow">▶ Run</button>
+      </div>
+      <div class="editor-split">
+        <div class="editor-code" style="font-size: 12px;">
+          <span class="line"><span class="kw">import</span> turtle</span>
+          <span class="line"><span class="kw">import</span> random</span>
+          <span class="line"></span>
+          <span class="line">t = turtle.<span class="fn">Turtle</span>()</span>
+          <span class="line">t.<span class="fn">speed</span>(<span class="num">0</span>)</span>
+          <span class="line">screen = turtle.<span class="fn">Screen</span>()</span>
+          <span class="line">screen.<span class="fn">bgcolor</span>(<span class="str">"black"</span>)</span>
+          <span class="line"></span>
+          <span class="line">colors = [<span class="str">"red"</span>, <span class="str">"yellow"</span>, <span class="str">"blue"</span>,</span>
+          <span class="line">          <span class="str">"green"</span>, <span class="str">"orange"</span>, <span class="str">"cyan"</span>]</span>
+          <span class="line"></span>
+          <span class="line new"><span class="kw">for</span> i <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">36</span>):</span>
+          <span class="line new">    t.<span class="fn">color</span>(random.<span class="fn">choice</span>(colors))</span>
+          <span class="line new">    <span class="kw">for</span> _ <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">4</span>):</span>
+          <span class="line new">        t.<span class="fn">forward</span>(<span class="num">100</span>)</span>
+          <span class="line new">        t.<span class="fn">right</span>(<span class="num">90</span>)</span>
+          <span class="line new">    t.<span class="fn">right</span>(<span class="num">10</span>)</span>
+        </div>
+        <div class="editor-canvas">
+          <span class="canvas-label">Розетка! 🎉</span>
+          <svg viewBox="-200 -200 400 400" width="260">
+            <rect x="-200" y="-200" width="400" height="400" fill="#1B1A2A"/>
+            <g id="final-rosette-target"></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="tag">Обережно з відступами!</span>
+      Малий цикл (4 рази) тепер всередині великого (36 разів) — значить його рядки мають <strong>подвійний відступ</strong> (8 пробілів). Python суворо стежить за відступами.
+    </div>
+  </section>
+
+  <!-- SLIDE 13: TASK 1 - EXPERIMENTS -->
+  <section class="slide" data-slide="13">
+    <span class="step-tag sage">Завдання 1</span>
+    <h1 class="slide-title">Експерименти з параметрами</h1>
+    <p class="lead">Спробуй змінити <strong>одне число</strong> в коді й подивись, що буде. Без страху — нічого не зламається.</p>
+
+    <div class="task-grid">
+      <div class="task">
+        <span class="task-num">A</span>
+        <h3>Заміни 36 на 72</h3>
+        <p>В рядку <code class="inline">range(36)</code> постав 72. Квадратів стане вдвічі більше — розетка буде щільніша.</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-a-rosette"></g></svg></div>
+      </div>
+      <div class="task">
+        <span class="task-num">B</span>
+        <h3>Заміни кут 10 на 5</h3>
+        <p>Останній рядок <code class="inline">t.right(10)</code> → <code class="inline">t.right(5)</code>. Квадрати рідше повертатимуться — вийде "вузенька" квітка.</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-b-rosette"></g></svg></div>
+      </div>
+      <div class="task">
+        <span class="task-num">C</span>
+        <h3>Заміни 100 на 50</h3>
+        <p>В <code class="inline">t.forward(100)</code> постав 50. Квадрати стануть маленькі — мікророзетка!</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-c-rosette"></g></svg></div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <span class="tag">Порада</span>
+      Перед кожним експериментом — натисни ▶ Run, щоб побачити результат. Не подобається? Поверни число назад або вигадай нове.
+    </div>
+  </section>
+
+  <!-- SLIDE 14: TASK 2 - OWN SHAPE -->
+  <section class="slide" data-slide="14">
+    <span class="step-tag sage">Завдання 2</span>
+    <h1 class="slide-title">Своя фігура замість квадрата</h1>
+    <p class="lead">Квадрат — це 4 сторони, кут повороту 90°. А якщо взяти іншу фігуру? Правило: <strong>кут = 360 ÷ кількість сторін</strong>.</p>
+
+    <div class="task-grid">
+      <div class="task">
+        <span class="task-num">△</span>
+        <h3>Трикутник</h3>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--code-paper); padding: 8px; border-radius: 2px;">range(<strong>3</strong>):<br>&nbsp;&nbsp;forward(100)<br>&nbsp;&nbsp;right(<strong>120</strong>)</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-tri-rosette"></g></svg></div>
+      </div>
+      <div class="task">
+        <span class="task-num">⬠</span>
+        <h3>П'ятикутник</h3>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--code-paper); padding: 8px; border-radius: 2px;">range(<strong>5</strong>):<br>&nbsp;&nbsp;forward(80)<br>&nbsp;&nbsp;right(<strong>72</strong>)</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-penta-rosette"></g></svg></div>
+      </div>
+      <div class="task">
+        <span class="task-num">⬡</span>
+        <h3>Шестикутник</h3>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; background: var(--code-paper); padding: 8px; border-radius: 2px;">range(<strong>6</strong>):<br>&nbsp;&nbsp;forward(70)<br>&nbsp;&nbsp;right(<strong>60</strong>)</p>
+        <div class="preview"><svg viewBox="-200 -200 400 400"><g id="task-hex-rosette"></g></svg></div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <span class="tag">Шпаргалка по кутах</span>
+      Трикутник: 360 / 3 = <strong>120°</strong> · Квадрат: 360 / 4 = <strong>90°</strong> · П'ятикутник: 360 / 5 = <strong>72°</strong> · Шестикутник: 360 / 6 = <strong>60°</strong> · Восьмикутник: 360 / 8 = <strong>45°</strong>
+    </div>
+  </section>
+
+  <!-- SLIDE 15: BONUS - SPIRAL -->
+  <section class="slide" data-slide="15">
+    <span class="step-tag indigo">Бонус для швидких</span>
+    <h1 class="slide-title">Спіраль замість розетки</h1>
+    <p class="lead">Що буде, якщо в кожному циклі квадрат робити трохи <em>більшим</em>, ніж попередній? Перетвориться на закручену спіраль.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">Зміни в коді</div>
+        <div class="editor" style="margin-top: 0;">
           <div class="editor-bar">
             <span>main.py</span>
             <button class="run-btn">▶ Run</button>
           </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"
-                ><span class="comment"># Default starter code</span></span
-              >
-              <span class="line"
-                ><span class="kw">from</span> turtle
-                <span class="kw">import</span> *</span
-              >
-              <span class="line"></span>
-              <span class="line"
-                ><span class="fn">color</span>(<span class="str">'red'</span>,
-                <span class="str">'yellow'</span>)</span
-              >
-              <span class="line"><span class="fn">begin_fill</span>()</span>
-              <span class="line"
-                ><span class="kw">while</span>
-                <span class="builtin">True</span>:</span
-              >
-              <span class="line">
-                <span class="fn">forward</span>(<span class="num">200</span
-                >)</span
-              >
-              <span class="line">
-                <span class="fn">left</span>(<span class="num">170</span>)</span
-              >
-              <span class="line">
-                <span class="kw">if</span>
-                <span class="builtin">abs</span>(<span class="fn">pos</span>())
-                &lt; <span class="num">1</span>:</span
-              >
-              <span class="line"> <span class="kw">break</span></span>
-              <span class="line"><span class="fn">end_fill</span>()</span>
-              <span class="line"><span class="fn">done</span>()</span>
-            </div>
-            <div class="editor-canvas empty-canvas">
-              <span class="canvas-label">область результату</span>
-              поки порожньо —<br />
-              ▶ Run ще не натискали
-            </div>
+          <div class="editor-code" style="border-right: none;">
+            <span class="line"><span class="comment"># ...решта коду без змін...</span></span>
+            <span class="line"></span>
+            <span class="line"><span class="kw">for</span> i <span class="kw">in</span> <span class="builtin">range</span>(<span class="num">100</span>):</span>
+            <span class="line">    t.<span class="fn">color</span>(random.<span class="fn">choice</span>(colors))</span>
+            <span class="line new">    t.<span class="fn">forward</span>(i * <span class="num">3</span>)</span>
+            <span class="line new">    t.<span class="fn">right</span>(<span class="num">91</span>)</span>
           </div>
         </div>
-
-        <div class="callout warn">
-          <span class="tag">Не запускай цей приклад</span>
-          Він написаний для старішої версії turtle і на trinket.io/turtle малює
-          <strong>не зірку, а тонесеньку чорну рисочку</strong>. Не лякайся — це
-          не твоя помилка. Ми зараз все одно видалимо цей код.
+        <p style="font-size: 14px; margin-top: 12px;">Тут <code class="inline">i * 3</code> — це довжина кроку. Першого разу <code class="inline">i = 0</code>, потім <code class="inline">i = 1</code>, потім <code class="inline">2</code>... і кожен крок довший. А <code class="inline">right(91)</code> замість 90 — це секрет, який і робить спіраль "закрученою".</p>
+      </div>
+      <div>
+        <div class="col-label coral">Результат</div>
+        <div style="background: black; border-radius: 6px; aspect-ratio: 1;">
+          <svg viewBox="-200 -200 400 400" width="100%"><g id="spiral-target"></g></svg>
         </div>
-        <div class="callout info">
-          <span class="tag"
-            >Червоний ⚠️ біля &laquo;main.py&raquo; — нормально</span
-          >
-          Цей значок означає просто &laquo;файл змінений&raquo;, а не помилку.
-          З'являється і зникає сам по собі. Не звертай на нього уваги.
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- SLIDE 6: STEP 4 - EDITOR INTERFACE -->
-      <section class="slide" data-slide="6">
-        <span class="step-tag coral">Крок 4</span>
-        <h1 class="slide-title">Знайомимось з редактором</h1>
-        <p class="lead">
-          Екран ділиться на дві частини. Зліва — куди ми пишемо код. Справа — де
-          комп'ютер показує результат.
-        </p>
+  <!-- SLIDE 16: FINAL -->
+  <section class="slide" data-slide="16">
+    <div class="celebrate">
+      <div class="big-emoji">🎉</div>
+      <h1 class="slide-title">Молодці!</h1>
+      <p class="lead" style="margin: 0 auto 30px;">Ми написали програму на Python, познайомились з двома бібліотеками, розібрали вкладені цикли — і зробили розетку, якою можна хвалитися.</p>
+    </div>
 
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"
-                ><span class="comment"># Default starter code</span></span
-              >
-              <span class="line"
-                ><span class="kw">from</span> turtle
-                <span class="kw">import</span> *</span
-              >
-              <span class="line"></span>
-              <span class="line"
-                >color(<span class="str">'red'</span>,
-                <span class="str">'yellow'</span>)</span
-              >
-              <span class="line">begin_fill()</span>
-              <span class="line"
-                ><span class="kw">while</span>
-                <span class="builtin">True</span>:</span
-              >
-              <span class="line"> forward(<span class="num">200</span>)</span>
-              <span class="line"> left(<span class="num">170</span>)</span>
-              <span class="line">
-                <span class="kw">if</span> abs(pos()) &lt;
-                <span class="num">1</span>:</span
-              >
-              <span class="line"> <span class="kw">break</span></span>
-              <span class="line">end_fill()</span>
-              <span class="line">done()</span>
-            </div>
-            <div class="editor-canvas empty-canvas">
-              <span class="canvas-label">область результату</span>
-              тут з'являться<br />
-              наші малюнки
-            </div>
-          </div>
-        </div>
+    <h2 style="font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; margin-top: 20px; margin-bottom: 12px;">📋 Чек-лист уроку</h2>
+    <ul class="checklist">
+      <li class="done">Відкрили браузер і Trinket</li>
+      <li class="done">Зрозуміли, де редактор, де ▶ Run, де результат</li>
+      <li class="done">Підключили бібліотеки turtle і random</li>
+      <li class="done">Малювали квадрат через цикл</li>
+      <li class="done">Зробили розетку через цикл у циклі</li>
+      <li class="done">Експериментували: кольори, кути, фігури</li>
+    </ul>
 
-        <div class="two-col" style="margin-top: 28px">
-          <div>
-            <div class="col-label">⬅️ Ліве вікно — РЕДАКТОР</div>
-            <p style="font-size: 15px">
-              Тут ми пишемо команди для комп'ютера. Кожен рядок — окрема
-              команда.
-            </p>
-          </div>
-          <div>
-            <div class="col-label coral">➡️ Праве вікно — ВИВІД</div>
-            <p style="font-size: 15px">
-              Тут з'являється результат: малюнок, текст або повідомлення про
-              помилку. Спочатку воно порожнє.
-            </p>
-          </div>
-        </div>
-        <div class="callout info">
-          <span class="tag">Зелена кнопка ▶ Run</span>
-          Натискаємо її щоразу, коли хочемо побачити, що робить наш код.
-        </div>
-      </section>
+    <div class="callout tip" style="margin-top: 30px;">
+      <span class="tag">Перед тим як піти</span>
+      <strong>Покажи сусіду свою розетку!</strong> Чим вона відрізняється? Хто зробив найкрутіше? Заскриншоть на пам'ять (<code class="inline">PrintScreen</code> або <code class="inline">Win + Shift + S</code> на Windows, <code class="inline">⌘ + Shift + 4</code> на Mac).
+    </div>
 
-      <!-- SLIDE 7: STEP 5 - CLEAR & IMPORT -->
-      <section class="slide" data-slide="7">
-        <span class="step-tag coral">Крок 5</span>
-        <h1 class="slide-title">Стираємо приклад, пишемо своє</h1>
-        <p class="lead">
-          Виділи весь код у лівому вікні (<code class="inline">Ctrl + A</code>)
-          та видали (<code class="inline">Delete</code>). Тепер пиши ось це:
-        </p>
+    <div class="callout info">
+      <span class="tag">На наступному уроці</span>
+      Знайомимось з <code class="inline">random</code> по-справжньому: пишемо генератор божевільних історій, де комп'ютер сам складає речення з наших слів.
+    </div>
+  </section>
 
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line new"
-                ><span class="kw">import</span> turtle</span
-              >
-              <span class="line new"
-                ><span class="kw">import</span> random</span
-              >
-              <span class="line"></span>
-              <span class="line empty">(поки що все)</span>
-            </div>
-            <div class="editor-canvas empty-canvas">
-              поки що порожньо —<br />
-              натиснемо ▶ Run на наступному кроці
-            </div>
-          </div>
-        </div>
+</main>
 
-        <div class="callout info">
-          <span class="tag">Що це за <code class="inline">import</code>?</span>
-          <p style="margin-bottom: 0">
-            Команда <code class="inline">import</code> підключає бібліотеку —
-            готовий набір функцій, які хтось вже написав для нас.
-            <code class="inline">turtle</code> вміє малювати.
-            <code class="inline">random</code> вміє вибирати випадкові речі. Без
-            них наша програма буде сама не своя.
-          </p>
-        </div>
-      </section>
+<nav class="nav-bar">
+  <button id="prev" onclick="navigate(-1)">← Назад</button>
+  <span class="indicator"><strong id="current">1</strong> / <span id="total">16</span></span>
+  <button id="next" onclick="navigate(1)">Далі →</button>
+</nav>
 
-      <!-- SLIDE 8: STEP 6 - CREATE TURTLE -->
-      <section class="slide" data-slide="8">
-        <span class="step-tag coral">Крок 6</span>
-        <h1 class="slide-title">Кличемо черепаху на сцену</h1>
-        <p class="lead">
-          Додаємо ще 2 рядки. Перший створює черепаху-художницю на ім'я
-          <code class="inline">t</code>. Другий — каже їй малювати максимально
-          швидко.
-        </p>
+<script>
+  // === SLIDE NAVIGATION ===
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let current = 1;
 
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn glow">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"><span class="kw">import</span> turtle</span>
-              <span class="line"><span class="kw">import</span> random</span>
-              <span class="line"></span>
-              <span class="line new"
-                >t = turtle.<span class="fn">Turtle</span>()</span
-              >
-              <span class="line new"
-                >t.<span class="fn">speed</span>(<span class="num">0</span
-                >)</span
-              >
-            </div>
-            <div class="editor-canvas">
-              <span class="canvas-label">Натисни ▶ Run</span>
-              <svg viewBox="-150 -150 300 300" width="200">
-                <rect x="-150" y="-150" width="300" height="300" fill="white" />
-                <polygon
-                  class="turtle-arrow"
-                  points="-8,-6 8,0 -8,6"
-                  fill="#1B1A2A"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
+  document.getElementById('total').textContent = totalSlides;
 
-        <div class="callout tip">
-          <span class="tag">Що повинно з'явитися</span>
-          Маленький чорний трикутничок (стрілочка) посередині правого вікна. Це
-          і є наша черепаха. Поки вона дивиться вправо.
-        </div>
-        <div class="callout info">
-          <span class="tag">Чому <code class="inline">speed(0)</code>?</span>
-          Дивно, але у turtle <strong>0 — це максимальна швидкість</strong>, а
-          не "стоп". 1 — найповільніша, 10 — швидка, 0 — миттєво. Логіка
-          інопланетна, але звикнемо.
-        </div>
-      </section>
+  // Build progress dots
+  const progress = document.getElementById('progress');
+  for (let i = 1; i <= totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.onclick = () => goTo(i);
+    progress.appendChild(dot);
+  }
+  const dots = progress.querySelectorAll('.dot');
 
-      <!-- SLIDE 9: STEP 7 - FIRST SQUARE -->
-      <section class="slide" data-slide="9">
-        <span class="step-tag coral">Крок 7</span>
-        <h1 class="slide-title">Малюємо перший квадрат</h1>
-        <p class="lead">
-          Додаємо цикл: 4 рази "пройти вперед на 100, повернути направо на 90°".
-          Виходить квадрат.
-        </p>
+  function goTo(n) {
+    if (n < 1 || n > totalSlides) return;
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n - 1].classList.add('active');
+    current = n;
+    document.getElementById('current').textContent = n;
+    document.getElementById('prev').disabled = n === 1;
+    document.getElementById('next').disabled = n === totalSlides;
+    dots.forEach((d, i) => {
+      d.classList.remove('current', 'done');
+      if (i + 1 < n) d.classList.add('done');
+      if (i + 1 === n) d.classList.add('current');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn glow">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"><span class="kw">import</span> turtle</span>
-              <span class="line"><span class="kw">import</span> random</span>
-              <span class="line"></span>
-              <span class="line"
-                >t = turtle.<span class="fn">Turtle</span>()</span
-              >
-              <span class="line"
-                >t.<span class="fn">speed</span>(<span class="num">0</span
-                >)</span
-              >
-              <span class="line"></span>
-              <span class="line new"
-                ><span class="kw">for</span> _ <span class="kw">in</span>
-                <span class="builtin">range</span>(<span class="num">4</span
-                >):</span
-              >
-              <span class="line new">
-                t.<span class="fn">forward</span>(<span class="num">100</span
-                >)</span
-              >
-              <span class="line new">
-                t.<span class="fn">right</span>(<span class="num">90</span
-                >)</span
-              >
-            </div>
-            <div class="editor-canvas">
-              <span class="canvas-label">Після ▶ Run</span>
-              <svg viewBox="-150 -150 300 300" width="220">
-                <rect x="-150" y="-150" width="300" height="300" fill="white" />
-                <polyline
-                  points="0,0 100,0 100,100 0,100 0,0"
-                  fill="none"
-                  stroke="#1B1A2A"
-                  stroke-width="2"
-                />
-                <polygon
-                  class="turtle-arrow"
-                  points="-6,-4 6,0 -6,4"
-                  fill="#1B1A2A"
-                  transform="translate(0,0)"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
+  function navigate(delta) { goTo(current + delta); }
 
-        <div class="callout info">
-          <span class="tag"
-            >Розбираємо <code class="inline">for _ in range(4):</code></span
-          >
-          <p style="margin-bottom: 0">
-            Це означає: "виконай те, що відступлено праворуч, рівно 4 рази".
-            Підкреслення <code class="inline">_</code> — це змінна, яка нам не
-            потрібна (просто лічильник). Двокрапка та відступ — обов'язкові!
-          </p>
-        </div>
-      </section>
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft') navigate(-1);
+  });
 
-      <!-- SLIDE 10: STEP 8 - ADD COLOR -->
-      <section class="slide" data-slide="10">
-        <span class="step-tag coral">Крок 8</span>
-        <h1 class="slide-title">Розфарбовуємо</h1>
-        <p class="lead">
-          Перед циклом скажемо черепасі, якого кольору лінія. А фон зробимо
-          чорним — на ньому кольори будуть яскраві.
-        </p>
+  goTo(1);
 
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn glow">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"><span class="kw">import</span> turtle</span>
-              <span class="line"><span class="kw">import</span> random</span>
-              <span class="line"></span>
-              <span class="line"
-                >t = turtle.<span class="fn">Turtle</span>()</span
-              >
-              <span class="line"
-                >t.<span class="fn">speed</span>(<span class="num">0</span
-                >)</span
-              >
-              <span class="line new"
-                >screen = turtle.<span class="fn">Screen</span>()</span
-              >
-              <span class="line new"
-                >screen.<span class="fn">bgcolor</span>(<span class="str"
-                  >"black"</span
-                >)</span
-              >
-              <span class="line new"
-                >t.<span class="fn">color</span>(<span class="str">"red"</span
-                >)</span
-              >
-              <span class="line"></span>
-              <span class="line"
-                ><span class="kw">for</span> _ <span class="kw">in</span>
-                <span class="builtin">range</span>(<span class="num">4</span
-                >):</span
-              >
-              <span class="line">
-                t.<span class="fn">forward</span>(<span class="num">100</span
-                >)</span
-              >
-              <span class="line">
-                t.<span class="fn">right</span>(<span class="num">90</span
-                >)</span
-              >
-            </div>
-            <div class="editor-canvas">
-              <span class="canvas-label">Після ▶ Run</span>
-              <svg viewBox="-150 -150 300 300" width="220">
-                <rect
-                  x="-150"
-                  y="-150"
-                  width="300"
-                  height="300"
-                  fill="#1B1A2A"
-                />
-                <polyline
-                  points="0,0 100,0 100,100 0,100 0,0"
-                  fill="none"
-                  stroke="#D85C3A"
-                  stroke-width="2.5"
-                />
-                <polygon
-                  class="turtle-arrow"
-                  points="-6,-4 6,0 -6,4"
-                  fill="#D85C3A"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
+  // === ROSETTE GENERATOR ===
+  function makeRosette(target, opts) {
+    const { numShapes, sides, sideLength, rotation, colors, strokeWidth = 2.5 } = opts;
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const interiorAngle = 360 / sides;
 
-        <div class="callout tip">
-          <span class="tag">Замість &laquo;red&raquo; спробуй</span>
-          <code class="inline">"yellow"</code>,
-          <code class="inline">"cyan"</code>,
-          <code class="inline">"magenta"</code>,
-          <code class="inline">"lime"</code>,
-          <code class="inline">"orange"</code>. Усі назви — англійською, у
-          лапках. Лапки можна одинарні або подвійні — без різниці.
-        </div>
-      </section>
+    for (let i = 0; i < numShapes; i++) {
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('transform', `rotate(${i * rotation})`);
 
-      <!-- SLIDE 11: STEP 9 - PALETTE -->
-      <section class="slide" data-slide="11">
-        <span class="step-tag coral">Крок 9</span>
-        <h1 class="slide-title">Готуємо палітру</h1>
-        <p class="lead">
-          Створимо <strong>список</strong> кольорів. Кожен квадрат буде вибирати
-          з нього випадковий колір.
-        </p>
-
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py</span>
-            <button class="run-btn glow">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code">
-              <span class="line"><span class="kw">import</span> turtle</span>
-              <span class="line"><span class="kw">import</span> random</span>
-              <span class="line"></span>
-              <span class="line"
-                >t = turtle.<span class="fn">Turtle</span>()</span
-              >
-              <span class="line"
-                >t.<span class="fn">speed</span>(<span class="num">0</span
-                >)</span
-              >
-              <span class="line"
-                >screen = turtle.<span class="fn">Screen</span>()</span
-              >
-              <span class="line"
-                >screen.<span class="fn">bgcolor</span>(<span class="str"
-                  >"black"</span
-                >)</span
-              >
-              <span class="line new"
-                >colors = [<span class="str">"red"</span>,
-                <span class="str">"yellow"</span>,
-                <span class="str">"blue"</span>,</span
-              >
-              <span class="line new">
-                <span class="str">"green"</span>,
-                <span class="str">"orange"</span>,
-                <span class="str">"cyan"</span>]</span
-              >
-              <span class="line new"
-                >t.<span class="fn">color</span>(random.<span class="fn"
-                  >choice</span
-                >(colors))</span
-              >
-              <span class="line"></span>
-              <span class="line"
-                ><span class="kw">for</span> _ <span class="kw">in</span>
-                <span class="builtin">range</span>(<span class="num">4</span
-                >):</span
-              >
-              <span class="line">
-                t.<span class="fn">forward</span>(<span class="num">100</span
-                >)</span
-              >
-              <span class="line">
-                t.<span class="fn">right</span>(<span class="num">90</span
-                >)</span
-              >
-            </div>
-            <div class="editor-canvas">
-              <span class="canvas-label">Запусти кілька разів!</span>
-              <svg viewBox="-150 -150 300 300" width="220">
-                <rect
-                  x="-150"
-                  y="-150"
-                  width="300"
-                  height="300"
-                  fill="#1B1A2A"
-                />
-                <polyline
-                  points="0,0 100,0 100,100 0,100 0,0"
-                  fill="none"
-                  stroke="#5BC0EB"
-                  stroke-width="2.5"
-                />
-                <polygon
-                  class="turtle-arrow"
-                  points="-6,-4 6,0 -6,4"
-                  fill="#5BC0EB"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout info">
-          <span class="tag">Експеримент</span>
-          Натисни ▶ Run 3–4 рази підряд. Колір квадрата щоразу різний! Це робота
-          <code class="inline">random.choice(colors)</code> — обирає випадковий
-          елемент зі списку.
-        </div>
-      </section>
-
-      <!-- SLIDE 12: STEP 10 - ROSETTE -->
-      <section class="slide" data-slide="12">
-        <span class="step-tag coral">Крок 10</span>
-        <h1 class="slide-title">36 квадратів — і виходить <em>розетка</em></h1>
-        <p class="lead">
-          Загортаємо весь блок (вибір кольору + малювання квадрата) у ще один
-          цикл, на 36 повторень. Між квадратами повертаємо черепаху на 10° — так
-          усі вони стануть під різним кутом і разом утворять зірку.
-        </p>
-
-        <div class="editor">
-          <div class="editor-bar">
-            <span>main.py · фінальний код</span>
-            <button class="run-btn glow">▶ Run</button>
-          </div>
-          <div class="editor-split">
-            <div class="editor-code" style="font-size: 12px">
-              <span class="line"><span class="kw">import</span> turtle</span>
-              <span class="line"><span class="kw">import</span> random</span>
-              <span class="line"></span>
-              <span class="line"
-                >t = turtle.<span class="fn">Turtle</span>()</span
-              >
-              <span class="line"
-                >t.<span class="fn">speed</span>(<span class="num">0</span
-                >)</span
-              >
-              <span class="line"
-                >screen = turtle.<span class="fn">Screen</span>()</span
-              >
-              <span class="line"
-                >screen.<span class="fn">bgcolor</span>(<span class="str"
-                  >"black"</span
-                >)</span
-              >
-              <span class="line"></span>
-              <span class="line"
-                >colors = [<span class="str">"red"</span>,
-                <span class="str">"yellow"</span>,
-                <span class="str">"blue"</span>,</span
-              >
-              <span class="line">
-                <span class="str">"green"</span>,
-                <span class="str">"orange"</span>,
-                <span class="str">"cyan"</span>]</span
-              >
-              <span class="line"></span>
-              <span class="line new"
-                ><span class="kw">for</span> i <span class="kw">in</span>
-                <span class="builtin">range</span>(<span class="num">36</span
-                >):</span
-              >
-              <span class="line new">
-                t.<span class="fn">color</span>(random.<span class="fn"
-                  >choice</span
-                >(colors))</span
-              >
-              <span class="line new">
-                <span class="kw">for</span> _ <span class="kw">in</span>
-                <span class="builtin">range</span>(<span class="num">4</span
-                >):</span
-              >
-              <span class="line new">
-                t.<span class="fn">forward</span>(<span class="num">100</span
-                >)</span
-              >
-              <span class="line new">
-                t.<span class="fn">right</span>(<span class="num">90</span
-                >)</span
-              >
-              <span class="line new">
-                t.<span class="fn">right</span>(<span class="num">10</span
-                >)</span
-              >
-            </div>
-            <div class="editor-canvas">
-              <span class="canvas-label">Розетка! 🎉</span>
-              <svg viewBox="-200 -200 400 400" width="260">
-                <rect
-                  x="-200"
-                  y="-200"
-                  width="400"
-                  height="400"
-                  fill="#1B1A2A"
-                />
-                <g id="final-rosette-target"></g>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout warn">
-          <span class="tag">Обережно з відступами!</span>
-          Малий цикл (4 рази) тепер всередині великого (36 разів) — значить його
-          рядки мають <strong>подвійний відступ</strong> (8 пробілів). Python
-          суворо стежить за відступами.
-        </div>
-      </section>
-
-      <!-- SLIDE 13: TASK 1 - EXPERIMENTS -->
-      <section class="slide" data-slide="13">
-        <span class="step-tag sage">Завдання 1</span>
-        <h1 class="slide-title">Експерименти з параметрами</h1>
-        <p class="lead">
-          Спробуй змінити <strong>одне число</strong> в коді й подивись, що
-          буде. Без страху — нічого не зламається.
-        </p>
-
-        <div class="task-grid">
-          <div class="task">
-            <span class="task-num">A</span>
-            <h3>Заміни 36 на 72</h3>
-            <p>
-              В рядку <code class="inline">range(36)</code> постав 72. Квадратів
-              стане вдвічі більше — розетка буде щільніша.
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400"><g id="task-a-rosette"></g></svg>
-            </div>
-          </div>
-          <div class="task">
-            <span class="task-num">B</span>
-            <h3>Заміни кут 10 на 5</h3>
-            <p>
-              Останній рядок <code class="inline">t.right(10)</code> →
-              <code class="inline">t.right(5)</code>. Квадрати рідше
-              повертатимуться — вийде "вузенька" квітка.
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400"><g id="task-b-rosette"></g></svg>
-            </div>
-          </div>
-          <div class="task">
-            <span class="task-num">C</span>
-            <h3>Заміни 100 на 50</h3>
-            <p>
-              В <code class="inline">t.forward(100)</code> постав 50. Квадрати
-              стануть маленькі — мікророзетка!
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400"><g id="task-c-rosette"></g></svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout tip">
-          <span class="tag">Порада</span>
-          Перед кожним експериментом — натисни ▶ Run, щоб побачити результат. Не
-          подобається? Поверни число назад або вигадай нове.
-        </div>
-      </section>
-
-      <!-- SLIDE 14: TASK 2 - OWN SHAPE -->
-      <section class="slide" data-slide="14">
-        <span class="step-tag sage">Завдання 2</span>
-        <h1 class="slide-title">Своя фігура замість квадрата</h1>
-        <p class="lead">
-          Квадрат — це 4 сторони, кут повороту 90°. А якщо взяти іншу фігуру?
-          Правило: <strong>кут = 360 ÷ кількість сторін</strong>.
-        </p>
-
-        <div class="task-grid">
-          <div class="task">
-            <span class="task-num">△</span>
-            <h3>Трикутник</h3>
-            <p
-              style="
-                font-family: &quot;JetBrains Mono&quot;, monospace;
-                font-size: 12px;
-                background: var(--code-paper);
-                padding: 8px;
-                border-radius: 2px;
-              "
-            >
-              range(<strong>3</strong>):<br />&nbsp;&nbsp;forward(100)<br />&nbsp;&nbsp;right(<strong>120</strong>)
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400">
-                <g id="task-tri-rosette"></g>
-              </svg>
-            </div>
-          </div>
-          <div class="task">
-            <span class="task-num">⬠</span>
-            <h3>П'ятикутник</h3>
-            <p
-              style="
-                font-family: &quot;JetBrains Mono&quot;, monospace;
-                font-size: 12px;
-                background: var(--code-paper);
-                padding: 8px;
-                border-radius: 2px;
-              "
-            >
-              range(<strong>5</strong>):<br />&nbsp;&nbsp;forward(80)<br />&nbsp;&nbsp;right(<strong>72</strong>)
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400">
-                <g id="task-penta-rosette"></g>
-              </svg>
-            </div>
-          </div>
-          <div class="task">
-            <span class="task-num">⬡</span>
-            <h3>Шестикутник</h3>
-            <p
-              style="
-                font-family: &quot;JetBrains Mono&quot;, monospace;
-                font-size: 12px;
-                background: var(--code-paper);
-                padding: 8px;
-                border-radius: 2px;
-              "
-            >
-              range(<strong>6</strong>):<br />&nbsp;&nbsp;forward(70)<br />&nbsp;&nbsp;right(<strong>60</strong>)
-            </p>
-            <div class="preview">
-              <svg viewBox="-200 -200 400 400">
-                <g id="task-hex-rosette"></g>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout info">
-          <span class="tag">Шпаргалка по кутах</span>
-          Трикутник: 360 / 3 = <strong>120°</strong> · Квадрат: 360 / 4 =
-          <strong>90°</strong> · П'ятикутник: 360 / 5 = <strong>72°</strong> ·
-          Шестикутник: 360 / 6 = <strong>60°</strong> · Восьмикутник: 360 / 8 =
-          <strong>45°</strong>
-        </div>
-      </section>
-
-      <!-- SLIDE 15: BONUS - SPIRAL -->
-      <section class="slide" data-slide="15">
-        <span class="step-tag indigo">Бонус для швидких</span>
-        <h1 class="slide-title">Спіраль замість розетки</h1>
-        <p class="lead">
-          Що буде, якщо в кожному циклі квадрат робити трохи <em>більшим</em>,
-          ніж попередній? Перетвориться на закручену спіраль.
-        </p>
-
-        <div class="two-col">
-          <div>
-            <div class="col-label">Зміни в коді</div>
-            <div class="editor" style="margin-top: 0">
-              <div class="editor-bar">
-                <span>main.py</span>
-                <button class="run-btn">▶ Run</button>
-              </div>
-              <div class="editor-code" style="border-right: none">
-                <span class="line"
-                  ><span class="comment"
-                    ># ...решта коду без змін...</span
-                  ></span
-                >
-                <span class="line"></span>
-                <span class="line"
-                  ><span class="kw">for</span> i <span class="kw">in</span>
-                  <span class="builtin">range</span>(<span class="num">100</span
-                  >):</span
-                >
-                <span class="line">
-                  t.<span class="fn">color</span>(random.<span class="fn"
-                    >choice</span
-                  >(colors))</span
-                >
-                <span class="line new">
-                  t.<span class="fn">forward</span>(i *
-                  <span class="num">3</span>)</span
-                >
-                <span class="line new">
-                  t.<span class="fn">right</span>(<span class="num">91</span
-                  >)</span
-                >
-              </div>
-            </div>
-            <p style="font-size: 14px; margin-top: 12px">
-              Тут <code class="inline">i * 3</code> — це довжина кроку. Першого
-              разу <code class="inline">i = 0</code>, потім
-              <code class="inline">i = 1</code>, потім
-              <code class="inline">2</code>... і кожен крок довший. А
-              <code class="inline">right(91)</code> замість 90 — це секрет, який
-              і робить спіраль "закрученою".
-            </p>
-          </div>
-          <div>
-            <div class="col-label coral">Результат</div>
-            <div style="background: black; border-radius: 6px; aspect-ratio: 1">
-              <svg viewBox="-200 -200 400 400" width="100%">
-                <g id="spiral-target"></g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 16: FINAL -->
-      <section class="slide" data-slide="16">
-        <div class="celebrate">
-          <div class="big-emoji">🎉</div>
-          <h1 class="slide-title">Молодці!</h1>
-          <p class="lead" style="margin: 0 auto 30px">
-            Ми написали програму на Python, познайомились з двома бібліотеками,
-            розібрали вкладені цикли — і зробили розетку, якою можна хвалитися.
-          </p>
-        </div>
-
-        <h2
-          style="
-            font-family: &quot;Fraunces&quot;, serif;
-            font-weight: 700;
-            font-size: 22px;
-            margin-top: 20px;
-            margin-bottom: 12px;
-          "
-        >
-          📋 Чек-лист уроку
-        </h2>
-        <ul class="checklist">
-          <li class="done">Відкрили браузер і Trinket</li>
-          <li class="done">Зрозуміли, де редактор, де ▶ Run, де результат</li>
-          <li class="done">Підключили бібліотеки turtle і random</li>
-          <li class="done">Малювали квадрат через цикл</li>
-          <li class="done">Зробили розетку через цикл у циклі</li>
-          <li class="done">Експериментували: кольори, кути, фігури</li>
-        </ul>
-
-        <div class="callout tip" style="margin-top: 30px">
-          <span class="tag">Перед тим як піти</span>
-          <strong>Покажи сусіду свою розетку!</strong> Чим вона відрізняється?
-          Хто зробив найкрутіше? Заскриншоть на пам'ять (<code class="inline"
-            >PrintScreen</code
-          >
-          або <code class="inline">Win + Shift + S</code> на Windows,
-          <code class="inline">⌘ + Shift + 4</code> на Mac).
-        </div>
-
-        <div class="callout info">
-          <span class="tag">На наступному уроці</span>
-          Знайомимось з <code class="inline">random</code> по-справжньому:
-          пишемо генератор божевільних історій, де комп'ютер сам складає речення
-          з наших слів.
-        </div>
-      </section>
-    </main>
-
-    <nav class="nav-bar">
-      <button id="prev" onclick="navigate(-1)">← Назад</button>
-      <span class="indicator"
-        ><strong id="current">1</strong> / <span id="total">16</span></span
-      >
-      <button id="next" onclick="navigate(1)">Далі →</button>
-    </nav>
-
-    <script>
-      // === SLIDE NAVIGATION ===
-      const slides = document.querySelectorAll(".slide");
-      const totalSlides = slides.length;
-      let current = 1;
-
-      document.getElementById("total").textContent = totalSlides;
-
-      // Build progress dots
-      const progress = document.getElementById("progress");
-      for (let i = 1; i <= totalSlides; i++) {
-        const dot = document.createElement("div");
-        dot.className = "dot";
-        dot.onclick = () => goTo(i);
-        progress.appendChild(dot);
-      }
-      const dots = progress.querySelectorAll(".dot");
-
-      function goTo(n) {
-        if (n < 1 || n > totalSlides) return;
-        slides.forEach((s) => s.classList.remove("active"));
-        slides[n - 1].classList.add("active");
-        current = n;
-        document.getElementById("current").textContent = n;
-        document.getElementById("prev").disabled = n === 1;
-        document.getElementById("next").disabled = n === totalSlides;
-        dots.forEach((d, i) => {
-          d.classList.remove("current", "done");
-          if (i + 1 < n) d.classList.add("done");
-          if (i + 1 === n) d.classList.add("current");
-        });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      // Simulate turtle path in SVG coords (y down, right turn = clockwise = +angle)
+      let x = 0, y = 0, heading = 0;
+      const points = [`${x.toFixed(1)},${y.toFixed(1)}`];
+      for (let s = 0; s < sides; s++) {
+        const rad = heading * Math.PI / 180;
+        x += sideLength * Math.cos(rad);
+        y += sideLength * Math.sin(rad);
+        points.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+        heading += interiorAngle;
       }
 
-      function navigate(delta) {
-        goTo(current + delta);
-      }
+      const polygon = document.createElementNS(svgNS, 'polygon');
+      polygon.setAttribute('points', points.join(' '));
+      polygon.setAttribute('fill', 'none');
+      polygon.setAttribute('stroke', colors[i % colors.length]);
+      polygon.setAttribute('stroke-width', strokeWidth);
+      polygon.setAttribute('stroke-linejoin', 'round');
+      g.appendChild(polygon);
+      target.appendChild(g);
+    }
+  }
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight" || e.key === " ") navigate(1);
-        if (e.key === "ArrowLeft") navigate(-1);
-      });
+  const palette = ['#FF4D6D', '#FFD23F', '#5BC0EB', '#4FC08D', '#FF914D', '#9B72CF', '#FF7AB8', '#5BD8E8', '#F0EAD2'];
 
-      goTo(1);
+  // Cover rosette (full 36 squares)
+  makeRosette(document.getElementById('cover-rosette-target'), {
+    numShapes: 36, sides: 4, sideLength: 90, rotation: 10, colors: palette, strokeWidth: 2
+  });
 
-      // === ROSETTE GENERATOR ===
-      function makeRosette(target, opts) {
-        const {
-          numShapes,
-          sides,
-          sideLength,
-          rotation,
-          colors,
-          strokeWidth = 2.5,
-        } = opts;
-        const svgNS = "http://www.w3.org/2000/svg";
-        const interiorAngle = 360 / sides;
+  // Final rosette (full 36 squares)
+  makeRosette(document.getElementById('final-rosette-target'), {
+    numShapes: 36, sides: 4, sideLength: 100, rotation: 10, colors: palette, strokeWidth: 2.5
+  });
 
-        for (let i = 0; i < numShapes; i++) {
-          const g = document.createElementNS(svgNS, "g");
-          g.setAttribute("transform", `rotate(${i * rotation})`);
+  // Task A: 72 squares
+  makeRosette(document.getElementById('task-a-rosette'), {
+    numShapes: 72, sides: 4, sideLength: 100, rotation: 5, colors: palette, strokeWidth: 1.5
+  });
 
-          // Simulate turtle path in SVG coords (y down, right turn = clockwise = +angle)
-          let x = 0,
-            y = 0,
-            heading = 0;
-          const points = [`${x.toFixed(1)},${y.toFixed(1)}`];
-          for (let s = 0; s < sides; s++) {
-            const rad = (heading * Math.PI) / 180;
-            x += sideLength * Math.cos(rad);
-            y += sideLength * Math.sin(rad);
-            points.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-            heading += interiorAngle;
-          }
+  // Task B: 5 degrees rotation (so it's like 72 squares but only 36 of them, denser)
+  makeRosette(document.getElementById('task-b-rosette'), {
+    numShapes: 36, sides: 4, sideLength: 100, rotation: 5, colors: palette, strokeWidth: 2
+  });
 
-          const polygon = document.createElementNS(svgNS, "polygon");
-          polygon.setAttribute("points", points.join(" "));
-          polygon.setAttribute("fill", "none");
-          polygon.setAttribute("stroke", colors[i % colors.length]);
-          polygon.setAttribute("stroke-width", strokeWidth);
-          polygon.setAttribute("stroke-linejoin", "round");
-          g.appendChild(polygon);
-          target.appendChild(g);
-        }
-      }
+  // Task C: small squares (50)
+  makeRosette(document.getElementById('task-c-rosette'), {
+    numShapes: 36, sides: 4, sideLength: 50, rotation: 10, colors: palette, strokeWidth: 2.5
+  });
 
-      const palette = [
-        "#FF4D6D",
-        "#FFD23F",
-        "#5BC0EB",
-        "#4FC08D",
-        "#FF914D",
-        "#9B72CF",
-        "#FF7AB8",
-        "#5BD8E8",
-        "#F0EAD2",
-      ];
+  // Triangle rosette
+  makeRosette(document.getElementById('task-tri-rosette'), {
+    numShapes: 36, sides: 3, sideLength: 100, rotation: 10, colors: palette, strokeWidth: 2
+  });
 
-      // Cover rosette (full 36 squares)
-      makeRosette(document.getElementById("cover-rosette-target"), {
-        numShapes: 36,
-        sides: 4,
-        sideLength: 90,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2,
-      });
+  // Pentagon rosette
+  makeRosette(document.getElementById('task-penta-rosette'), {
+    numShapes: 36, sides: 5, sideLength: 80, rotation: 10, colors: palette, strokeWidth: 2
+  });
 
-      // Final rosette (full 36 squares)
-      makeRosette(document.getElementById("final-rosette-target"), {
-        numShapes: 36,
-        sides: 4,
-        sideLength: 100,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2.5,
-      });
+  // Hexagon rosette
+  makeRosette(document.getElementById('task-hex-rosette'), {
+    numShapes: 36, sides: 6, sideLength: 70, rotation: 10, colors: palette, strokeWidth: 2
+  });
 
-      // Task A: 72 squares
-      makeRosette(document.getElementById("task-a-rosette"), {
-        numShapes: 72,
-        sides: 4,
-        sideLength: 100,
-        rotation: 5,
-        colors: palette,
-        strokeWidth: 1.5,
-      });
+  // Spiral
+  function makeSpiral(target) {
+    const svgNS = 'http://www.w3.org/2000/svg';
+    let x = 0, y = 0, heading = 0;
+    let pathD = `M ${x} ${y}`;
 
-      // Task B: 5 degrees rotation (so it's like 72 squares but only 36 of them, denser)
-      makeRosette(document.getElementById("task-b-rosette"), {
-        numShapes: 36,
-        sides: 4,
-        sideLength: 100,
-        rotation: 5,
-        colors: palette,
-        strokeWidth: 2,
-      });
+    for (let i = 0; i < 100; i++) {
+      const step = i * 3;
+      const rad = heading * Math.PI / 180;
+      x += step * Math.cos(rad);
+      y += step * Math.sin(rad);
+      pathD += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+      heading += 91;
 
-      // Task C: small squares (50)
-      makeRosette(document.getElementById("task-c-rosette"), {
-        numShapes: 36,
-        sides: 4,
-        sideLength: 50,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2.5,
-      });
+      const seg = document.createElementNS(svgNS, 'line');
+    }
 
-      // Triangle rosette
-      makeRosette(document.getElementById("task-tri-rosette"), {
-        numShapes: 36,
-        sides: 3,
-        sideLength: 100,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2,
-      });
+    const path = document.createElementNS(svgNS, 'path');
+    path.setAttribute('d', pathD);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', palette[0]);
+    path.setAttribute('stroke-width', '1.5');
 
-      // Pentagon rosette
-      makeRosette(document.getElementById("task-penta-rosette"), {
-        numShapes: 36,
-        sides: 5,
-        sideLength: 80,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2,
-      });
+    // Multi-color spiral via separate segments
+    target.innerHTML = '';
+    let cx = 0, cy = 0, h = 0;
+    for (let i = 0; i < 100; i++) {
+      const step = i * 3;
+      const rad = h * Math.PI / 180;
+      const nx = cx + step * Math.cos(rad);
+      const ny = cy + step * Math.sin(rad);
 
-      // Hexagon rosette
-      makeRosette(document.getElementById("task-hex-rosette"), {
-        numShapes: 36,
-        sides: 6,
-        sideLength: 70,
-        rotation: 10,
-        colors: palette,
-        strokeWidth: 2,
-      });
+      const line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', cx.toFixed(1));
+      line.setAttribute('y1', cy.toFixed(1));
+      line.setAttribute('x2', nx.toFixed(1));
+      line.setAttribute('y2', ny.toFixed(1));
+      line.setAttribute('stroke', palette[i % palette.length]);
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-linecap', 'round');
+      target.appendChild(line);
 
-      // Spiral
-      function makeSpiral(target) {
-        const svgNS = "http://www.w3.org/2000/svg";
-        let x = 0,
-          y = 0,
-          heading = 0;
-        let pathD = `M ${x} ${y}`;
+      cx = nx; cy = ny;
+      h += 91;
+    }
+  }
+  makeSpiral(document.getElementById('spiral-target'));
+</script>
 
-        for (let i = 0; i < 100; i++) {
-          const step = i * 3;
-          const rad = (heading * Math.PI) / 180;
-          x += step * Math.cos(rad);
-          y += step * Math.sin(rad);
-          pathD += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
-          heading += 91;
-
-          const seg = document.createElementNS(svgNS, "line");
-        }
-
-        const path = document.createElementNS(svgNS, "path");
-        path.setAttribute("d", pathD);
-        path.setAttribute("fill", "none");
-        path.setAttribute("stroke", palette[0]);
-        path.setAttribute("stroke-width", "1.5");
-
-        // Multi-color spiral via separate segments
-        target.innerHTML = "";
-        let cx = 0,
-          cy = 0,
-          h = 0;
-        for (let i = 0; i < 100; i++) {
-          const step = i * 3;
-          const rad = (h * Math.PI) / 180;
-          const nx = cx + step * Math.cos(rad);
-          const ny = cy + step * Math.sin(rad);
-
-          const line = document.createElementNS(svgNS, "line");
-          line.setAttribute("x1", cx.toFixed(1));
-          line.setAttribute("y1", cy.toFixed(1));
-          line.setAttribute("x2", nx.toFixed(1));
-          line.setAttribute("y2", ny.toFixed(1));
-          line.setAttribute("stroke", palette[i % palette.length]);
-          line.setAttribute("stroke-width", "2");
-          line.setAttribute("stroke-linecap", "round");
-          target.appendChild(line);
-
-          cx = nx;
-          cy = ny;
-          h += 91;
-        }
-      }
-      makeSpiral(document.getElementById("spiral-target"));
-    </script>
-  </body>
+</body>
 </html>
